@@ -1,0 +1,4 @@
+{
+  "db": "mongodb://localhost/bookly_test",
+  "jwtSignatureKey": "1234"
+}

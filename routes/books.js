@@ -1,0 +1,90 @@
+const _ = require("lodash");
+const auth = require("../middleware/auth");
+const admin = require("../middleware/admin");
+const moderator = require("../middleware/moderator");
+const objectId = require("../middleware/objectId");
+const validate = require("../middleware/validate");
+const { Book, validateBook } = require("../models/book");
+const { Category } = require("../models/category");
+const express = require("express");
+const router = express.Router();
+
+router.get("/", async (req, res) => {
+  const books = await Book.find().sort("title").select("title author");
+  res.send(books);
+});
+
+router.get("/:id", objectId, async (req, res) => {
+  const book = await Book.findById(req.params.id);
+  if (!book) return res.status(404).send("Book not found.");
+
+  res.send(book);
+});
+
+router.post("/", [auth, validate(validateBook)], async (req, res) => {
+  const category = await Category.findById(req.body.categoryId);
+  if (!category) return res.status(400).send("Invalid category.");
+
+  const book = new Book({
+    title: req.body.title,
+    subtitle: req.body.subtitle,
+    image: req.body.image,
+    category: {
+      _id: category._id,
+      name: category.name,
+    },
+    price: req.body.price,
+    author: req.body.author,
+    numberInStock: req.body.numberInStock,
+    publishDate: req.body.publishDate,
+    dailyRentalRate: req.body.dailyRentalRate,
+    freeShipping: req.body.numberInStock >= 100,
+    rating: req.body.rating,
+    review: req.body.review,
+  });
+  await book.save();
+
+  res.send(book);
+});
+
+router.put(
+  "/:id",
+  [auth, admin, moderator, objectId, validate(validateBook)],
+  async (req, res) => {
+    const category = await Category.findById(req.body.categoryId);
+    if (!category) return res.status(400).send("Invalid category.");
+
+    const book = await book.findByIdAndUpdate(
+      req.params.id,
+      {
+        title: req.body.title,
+        subtitle: req.body.subtitle,
+        image: req.body.image,
+        category: {
+          _id: category._id,
+          name: category.name,
+        },
+        price: req.body.price,
+        author: req.body.author,
+        numberInStock: req.body.numberInStock,
+        publishDate: req.body.publishDate,
+        dailyRentalRate: req.body.dailyRentalRate,
+        rating: req.body.rating,
+        review: req.body.review,
+      },
+      { new: true }
+    );
+    if (!book) return res.status(404).send("Book not found.");
+
+    res.send(book);
+  }
+);
+
+router.delete("/:id", [auth, admin, objectId], async (req, res) => {
+  const book = await book.findByIdAndRemove(req.params.id);
+  if (!book) return res.status(404).send("Book not found.");
+
+  res.send(book);
+});
+
+module.exports = router;
