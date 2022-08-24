@@ -19,8 +19,7 @@ router.post("/", [auth, validate(validateRental)], async (req, res) => {
   const book = await Book.findById(req.body.bookId);
   if (!book) return res.status(400).send("Invalid book.");
 
-  if (book.numberInStock === 0)
-    return res.status(400).send("Book not in stock.");
+  if (book.numberInStock === 0) return res.status(400).send("Out of stock.");
 
   let rental = new Rental({
     customer: {
@@ -32,6 +31,7 @@ router.post("/", [auth, validate(validateRental)], async (req, res) => {
       _id: book._id,
       title: book.title,
       author: book.author,
+      dailyRentalRate: book.dailyRentalRate,
     },
   });
 

@@ -148,7 +148,7 @@ describe("/api/customers", () => {
       await customer.save();
 
       id = customer._id;
-      token = new User({ admin: true, moderator: true }).generateAuthToken();
+      token = new User({ admin: true }).generateAuthToken();
       updatedName = "updatedName";
       updatedPhone = "updatedPhone";
     });
@@ -170,14 +170,6 @@ describe("/api/customers", () => {
 
     it("should return 403 if user is not an admin", async () => {
       token = new User({ admin: false }).generateAuthToken();
-
-      const res = await exec();
-
-      expect(res.status).toBe(403);
-    });
-
-    it("should return 403 if user is not an moderator", async () => {
-      token = new User({ moderator: false }).generateAuthToken();
 
       const res = await exec();
 
@@ -282,14 +274,6 @@ describe("/api/customers", () => {
 
     it("should return 403 if user is not an admin", async () => {
       token = new User({ admin: false }).generateAuthToken();
-
-      const res = await exec();
-
-      expect(res.status).toBe(403);
-    });
-
-    it("should return 403 if user is not an moderator", async () => {
-      token = new User({ moderator: false }).generateAuthToken();
 
       const res = await exec();
 

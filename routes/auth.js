@@ -1,5 +1,5 @@
 const passwordComplexity = require("joi-password-complexity");
-const Joi = require("joi");
+const Joi = require("joi-oid");
 const bcrypt = require("bcrypt");
 const { User, options } = require("../models/user");
 const express = require("express");

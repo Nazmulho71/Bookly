@@ -1,4 +1,4 @@
-const Joi = require("joi");
+const Joi = require("joi-oid");
 const mongoose = require("mongoose");
 
 const categorySchema = new mongoose.Schema({

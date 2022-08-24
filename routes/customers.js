@@ -1,7 +1,6 @@
 const _ = require("lodash");
 const auth = require("../middleware/auth");
 const admin = require("../middleware/admin");
-const moderator = require("../middleware/moderator");
 const objectId = require("../middleware/objectId");
 const validate = require("../middleware/validate");
 const { Customer, validateCustomer } = require("../models/customer");
@@ -31,7 +30,7 @@ router.post("/", [auth, validate(validateCustomer)], async (req, res) => {
 
 router.put(
   "/:id",
-  [auth, admin, moderator, objectId, validate(validateCustomer)],
+  [auth, admin, objectId, validate(validateCustomer)],
   async (req, res) => {
     const customer = await Customer.findByIdAndUpdate(
       req.params.id,

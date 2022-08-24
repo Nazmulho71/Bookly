@@ -1,7 +1,7 @@
 const config = require("config");
 const jwt = require("jsonwebtoken");
 const passwordComplexity = require("joi-password-complexity");
-const Joi = require("joi");
+const Joi = require("joi-oid");
 const mongoose = require("mongoose");
 
 const userSchema = new mongoose.Schema({
@@ -28,15 +28,11 @@ const userSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
-  moderator: {
-    type: Boolean,
-    default: false,
-  },
 });
 
 userSchema.methods.generateAuthToken = function () {
   return jwt.sign(
-    { _id: this._id, admin: this.admin, moderator: this.moderator },
+    { _id: this._id, admin: this.admin },
     config.get("jwtSignatureKey")
   );
 };

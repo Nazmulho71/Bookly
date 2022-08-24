@@ -1,4 +1,4 @@
-const Joi = require("joi").extend(require("@joi/date"));
+const Joi = require("joi-oid");
 const mongoose = require("mongoose");
 const { schema } = require("./category");
 
@@ -47,6 +47,7 @@ const Book = mongoose.model(
     publishDate: {
       type: Date,
       default: Date.now,
+      required: true,
     },
     dailyRentalRate: {
       type: Number,
@@ -77,11 +78,10 @@ function validateBook(book) {
     title: Joi.string().min(5).max(255).required(),
     subtitle: Joi.string().min(5).max(255),
     image: Joi.string().required(),
-    categoryId: Joi.objectId().required(),
+    categoryId: Joi.objectId(),
     price: Joi.number().min(10).max(1000).required(),
     author: Joi.string().min(5).max(255).required(),
     numberInStock: Joi.number().min(0).required(),
-    publishDate: Joi.date().format("YYYY-MM-DD").utc(),
     dailyRentalRate: Joi.number().min(0).required(),
     rating: Joi.number().min(0).max(5).required(),
     review: Joi.string().min(5),

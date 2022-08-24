@@ -1,4 +1,4 @@
-const Joi = require("joi");
+const Joi = require("joi-oid");
 const { Rental } = require("../models/rental");
 const { Book } = require("../models/book");
 const auth = require("../middleware/auth");
@@ -27,8 +27,8 @@ router.post("/", [auth, validate(validateReturn)], async (req, res) => {
 
 function validateReturn(req) {
   const schema = Joi.object({
-    customerId: Joi.objectId().required(),
-    bookId: Joi.objectId().required(),
+    customerId: Joi.objectId(),
+    bookId: Joi.objectId(),
   });
 
   return schema.validate(req);

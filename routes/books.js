@@ -1,7 +1,6 @@
 const _ = require("lodash");
 const auth = require("../middleware/auth");
 const admin = require("../middleware/admin");
-const moderator = require("../middleware/moderator");
 const objectId = require("../middleware/objectId");
 const validate = require("../middleware/validate");
 const { Book, validateBook } = require("../models/book");
@@ -10,7 +9,7 @@ const express = require("express");
 const router = express.Router();
 
 router.get("/", async (req, res) => {
-  const books = await Book.find().sort("title").select("title author");
+  const books = await Book.find().sort("title").select("-__v");
   res.send(books);
 });
 
@@ -49,12 +48,12 @@ router.post("/", [auth, validate(validateBook)], async (req, res) => {
 
 router.put(
   "/:id",
-  [auth, admin, moderator, objectId, validate(validateBook)],
+  [auth, admin, objectId, validate(validateBook)],
   async (req, res) => {
     const category = await Category.findById(req.body.categoryId);
     if (!category) return res.status(400).send("Invalid category.");
 
-    const book = await book.findByIdAndUpdate(
+    const book = await Book.findByIdAndUpdate(
       req.params.id,
       {
         title: req.body.title,
@@ -81,7 +80,7 @@ router.put(
 );
 
 router.delete("/:id", [auth, admin, objectId], async (req, res) => {
-  const book = await book.findByIdAndRemove(req.params.id);
+  const book = await Book.findByIdAndRemove(req.params.id);
   if (!book) return res.status(404).send("Book not found.");
 
   res.send(book);

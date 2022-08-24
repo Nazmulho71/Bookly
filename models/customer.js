@@ -1,4 +1,4 @@
-const Joi = require("joi");
+const Joi = require("joi-oid");
 const mongoose = require("mongoose");
 
 const Customer = mongoose.model(
@@ -31,7 +31,6 @@ function validateCustomer(customer) {
   const schema = Joi.object({
     name: Joi.string().min(5).max(50).required(),
     phone: Joi.string().length(10).required(),
-    isRegular: Joi.boolean(),
   });
 
   return schema.validate(customer);

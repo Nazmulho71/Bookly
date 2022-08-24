@@ -1,6 +1,5 @@
 const auth = require("../middleware/auth");
 const admin = require("../middleware/admin");
-const moderator = require("../middleware/moderator");
 const objectId = require("../middleware/objectId");
 const validate = require("../middleware/validate");
 const { Category, validateCategory } = require("../models/category");
@@ -28,7 +27,7 @@ router.post("/", [auth, validate(validateCategory)], async (req, res) => {
 
 router.put(
   "/:id",
-  [auth, admin, moderator, objectId, validate(validateCategory)],
+  [auth, admin, objectId, validate(validateCategory)],
   async (req, res) => {
     const category = await Category.findByIdAndUpdate(
       req.params.id,

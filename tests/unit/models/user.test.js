@@ -8,7 +8,6 @@ describe("generateAuthToken", () => {
     const payload = {
       _id: mongoose.Types.ObjectId(),
       admin: true,
-      moderator: false,
     };
     const user = new User(payload);
     const token = user.generateAuthToken();

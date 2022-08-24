@@ -123,7 +123,7 @@ describe("/api/categories", () => {
       await category.save();
 
       id = category._id;
-      token = new User({ admin: true, moderator: true }).generateAuthToken();
+      token = new User({ admin: true }).generateAuthToken();
       updatedName = "updatedName";
     });
 
@@ -144,14 +144,6 @@ describe("/api/categories", () => {
 
     it("should return 403 if the user is not an admin", async () => {
       token = new User({ admin: false }).generateAuthToken();
-
-      const res = await exec();
-
-      expect(res.status).toBe(403);
-    });
-
-    it("should return 403 if the user is not an moderator", async () => {
-      token = new User({ moderator: false }).generateAuthToken();
 
       const res = await exec();
 
