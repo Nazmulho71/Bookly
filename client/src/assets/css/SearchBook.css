@@ -1,0 +1,48 @@
+.searchBook {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.searchBook > img {
+  margin-right: 80px;
+}
+
+.searchBook__details > div {
+  display: flex;
+  align-items: center;
+}
+
+.searchBook__details > div:first-child {
+  margin-bottom: 3px;
+}
+
+.searchBook__details > div:first-child > p {
+  margin-left: 5px;
+}
+
+.searchBook__details h3 {
+  font-weight: 600;
+  font-size: 26px;
+}
+
+.searchBook__details p {
+  font-weight: 500;
+  font-size: 20px;
+  color: #999999;
+  margin-bottom: 3px;
+}
+
+.searchBook__details .MuiRating-root {
+  margin: 10px 0;
+}
+
+.searchBook__details-price {
+  font-weight: 500;
+  font-size: 32px;
+}
+
+.searchBook__details-price > span:first-child {
+  text-decoration-line: line-through;
+  color: #999999;
+  margin: 10px 10px 10px 0 !important;
+}

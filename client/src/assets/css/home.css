@@ -1,0 +1,11 @@
+.home > h3 {
+  margin: 20px;
+}
+
+.home__books {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 20px;
+}
