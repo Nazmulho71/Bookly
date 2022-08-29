@@ -1,15 +1,25 @@
-import Category from "./components/category";
+import React, { useEffect } from "react";
+import { Routes, Route } from "react-router-dom";
+import Header from "./components/Header";
+import Home from "./pages/home";
+import Search from "./pages/search";
+import Book from "./pages/book";
 import "./assets/css/App.css";
 
 function App() {
+  useEffect(() => {
+    document.title = "Buy Book Online | Bookly";
+  });
+
   return (
     <div className="app">
-      <div>
-        <h1>Bookly</h1>
-        <p>This is a very simple app with crud functionality.</p>
+      <Header />
 
-        <Category />
-      </div>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/search" element={<Search />} />
+        <Route path="/book" element={<Book />} />
+      </Routes>
     </div>
   );
 }

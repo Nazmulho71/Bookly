@@ -1,4 +1,4 @@
 {
   "db": "mongodb://localhost/bookly",
-  "jwtSignatureKey": ""
+  "jwtSignatureKey": "1234"
 }

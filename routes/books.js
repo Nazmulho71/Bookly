@@ -27,6 +27,7 @@ router.post("/", [auth, validate(validateBook)], async (req, res) => {
   const book = new Book({
     title: req.body.title,
     subtitle: req.body.subtitle,
+    edition: req.body.edition,
     image: req.body.image,
     category: {
       _id: category._id,
@@ -34,10 +35,14 @@ router.post("/", [auth, validate(validateBook)], async (req, res) => {
     },
     price: req.body.price,
     author: req.body.author,
-    numberInStock: req.body.numberInStock,
+    page: req.body.page,
+    format: req.body.format,
+    publisher: req.body.publisher,
     publishDate: req.body.publishDate,
+    numberInStock: req.body.numberInStock,
+    discount: req.body.discount,
     dailyRentalRate: req.body.dailyRentalRate,
-    freeShipping: req.body.numberInStock >= 100,
+    freeShipping: req.body.numberInStock >= 50,
     rating: req.body.rating,
     review: req.body.review,
   });
@@ -58,6 +63,7 @@ router.put(
       {
         title: req.body.title,
         subtitle: req.body.subtitle,
+        edition: req.body.edition,
         image: req.body.image,
         category: {
           _id: category._id,
@@ -65,8 +71,12 @@ router.put(
         },
         price: req.body.price,
         author: req.body.author,
-        numberInStock: req.body.numberInStock,
+        page: req.body.page,
+        format: req.body.format,
+        publisher: req.body.publisher,
         publishDate: req.body.publishDate,
+        numberInStock: req.body.numberInStock,
+        discount: req.body.discount,
         dailyRentalRate: req.body.dailyRentalRate,
         rating: req.body.rating,
         review: req.body.review,
