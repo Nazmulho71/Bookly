@@ -1,5 +1,5 @@
 .home > h3 {
-  margin: 20px;
+  margin: 20px 20px 0 20px;
 }
 
 .home__books {
@@ -7,5 +7,4 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  margin: 0 20px;
 }

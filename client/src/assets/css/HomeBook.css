@@ -1,8 +1,16 @@
 .homeBook {
+  width: fit-content;
   display: flex;
   align-items: center;
-  margin-bottom: 20px;
+  margin: 20px;
+  border-radius: 10px;
   flex: 1 0 21%;
+  cursor: pointer;
+  transition: all 0.1s ease-in-out;
+}
+
+.homeBook:hover {
+  background-color: #eee;
 }
 
 .homeBook__details {
@@ -27,9 +35,10 @@
   font-size: 20px;
 }
 
+.homeBook__details h3 > span,
 .homeBook__details p {
-  font-weight: 600;
-  font-size: 14px;
+  font-weight: 600 !important;
+  font-size: 14px !important;
   color: #999999;
   margin-bottom: 3px;
 }

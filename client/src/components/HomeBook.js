@@ -11,8 +11,9 @@ function Book({ image, title, edition, author, discountPrice, price }) {
 
       <div className="homeBook__details">
         <div>
-          <h3>{title}</h3>
-          <p>{edition}</p>
+          <h3>
+            {title}&nbsp;<span>{edition}</span>
+          </h3>
         </div>
 
         <p>{author}</p>
