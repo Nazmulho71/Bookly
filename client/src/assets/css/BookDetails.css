@@ -1,0 +1,31 @@
+.bookDetails {
+  display: flex;
+  align-items: start;
+}
+
+.bookDetails__details {
+  width: 100%;
+  margin-left: 60px;
+}
+
+.bookDetails__details > div {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.bookDetails__details h3 {
+  font-weight: 700;
+  font-size: 28px;
+}
+
+.bookDetails__details p {
+  font-weight: 500;
+  font-size: 20px;
+  color: #999;
+}
+
+.bookDetails__details span {
+  font-weight: 700;
+  font-size: 20px;
+}

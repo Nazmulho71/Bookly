@@ -1,0 +1,69 @@
+.book {
+  margin: 60px;
+}
+
+.book .MuiButtonBase-root {
+  width: 280px;
+  height: 50px;
+  float: right;
+  margin-top: -60px;
+  background: linear-gradient(107.56deg, #f2709b 24.95%, #ff9472 100%);
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 20px;
+  color: #fff;
+  box-shadow: none !important;
+}
+
+.book__description,
+.book__review {
+  margin: 20px 0;
+}
+
+.book__description h3,
+.book__review h3 {
+  font-weight: 700;
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+
+.book__description p,
+.book__review p {
+  font-weight: 500;
+  font-size: 20px;
+  color: #999999;
+}
+
+.book__description > div:first-child,
+.book__description > div:first-child div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.book__description > div:first-child div > span:first-child {
+  font-weight: 700;
+  font-size: 20px;
+  margin-right: 10px;
+}
+
+.book__description p span {
+  color: #61cef7;
+  cursor: pointer;
+}
+
+.book__description p span .MuiSvgIcon-root {
+  margin-bottom: -5px;
+}
+
+.book__review div {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.book__review span {
+  font-weight: 700;
+  font-size: 20px;
+  margin-left: 10px;
+}

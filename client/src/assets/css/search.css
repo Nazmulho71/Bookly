@@ -1,11 +1,3 @@
 .search {
   margin: 40px 80px;
 }
-
-.search > hr {
-  width: 100%;
-  height: 2px;
-  background: #999999;
-  opacity: 0.2;
-  margin-bottom: 20px;
-}
