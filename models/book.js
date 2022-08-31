@@ -1,5 +1,6 @@
 const Joi = require("joi-oid");
 const mongoose = require("mongoose");
+const Float = require("mongoose-float").loadType(mongoose);
 const { schema } = require("./category");
 
 const Book = mongoose.model(
@@ -31,7 +32,7 @@ const Book = mongoose.model(
       required: true,
     },
     price: {
-      type: Number,
+      type: Float,
       min: 10,
       max: 255,
       required: true,
@@ -78,7 +79,7 @@ const Book = mongoose.model(
       required: true,
     },
     discountPrice: {
-      type: Number,
+      type: Float,
       min: 10,
       max: 255,
     },
@@ -92,11 +93,9 @@ const Book = mongoose.model(
       type: Boolean,
     },
     rating: {
-      type: Number,
+      type: Float,
       min: 0,
       max: 5,
-      get: (r) => r.toFixed(1),
-      set: (r) => r.toFixed(1),
     },
     review: {
       type: String,
@@ -120,7 +119,7 @@ function validateBook(book) {
     format: Joi.string().min(5).max(255).required(),
     publisher: Joi.string().min(5).max(255).required(),
     numberInStock: Joi.number().min(0).required(),
-    discount: Joi.number(),
+    discountPrice: Joi.number(),
     dailyRentalRate: Joi.number().min(0).required(),
     rating: Joi.number().min(0).max(5).required(),
     review: Joi.string().min(5),

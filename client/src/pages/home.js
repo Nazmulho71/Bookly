@@ -1,9 +1,33 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import Hero from "../assets/images/Hero.png";
 import HomeBook from "../components/HomeBook";
 import "../assets/css/home.css";
 
 function Home() {
+  const [books, setBooks] = useState([]);
+
+  useEffect(() => {
+    document.title = "Buy Book Online | Bookly";
+  });
+
+  useEffect(() => {
+    let baseUrl = "http://localhost:3000/api";
+    let config = {
+      method: "get",
+      url: baseUrl + "/books",
+      headers: {},
+    };
+
+    axios(config)
+      .then(function (res) {
+        setBooks(res.data);
+      })
+      .catch(function (err) {
+        console.log(err);
+      });
+  }, []);
+
   return (
     <div className="home">
       <img src={Hero} alt="" width="100%" />
@@ -11,56 +35,7 @@ function Home() {
       <h3>Featured Books</h3>
 
       <div className="home__books">
-        <HomeBook
-          image={
-            "https://m.media-amazon.com/images/P/1118531647.01._SCLZZZZZZZ_SX500_.jpg"
-          }
-          title={"JavaScript and jQuery"}
-          edition={"1st Edition"}
-          author={"Jon Duckett"}
-          discountPrice={"$45"}
-          price={"$39.99"}
-        />
-        <HomeBook
-          image={
-            "https://m.media-amazon.com/images/P/1118531647.01._SCLZZZZZZZ_SX500_.jpg"
-          }
-          title={"JavaScript and jQuery"}
-          edition={"1st Edition"}
-          author={"Jon Duckett"}
-          discountPrice={"$45"}
-          price={"$39.99"}
-        />
-        <HomeBook
-          image={
-            "https://m.media-amazon.com/images/P/1118531647.01._SCLZZZZZZZ_SX500_.jpg"
-          }
-          title={"JavaScript and jQuery"}
-          edition={"1st Edition"}
-          author={"Jon Duckett"}
-          discountPrice={"$45"}
-          price={"$39.99"}
-        />
-        <HomeBook
-          image={
-            "https://m.media-amazon.com/images/P/1118531647.01._SCLZZZZZZZ_SX500_.jpg"
-          }
-          title={"JavaScript and jQuery"}
-          edition={"1st Edition"}
-          author={"Jon Duckett"}
-          discountPrice={"$45"}
-          price={"$39.99"}
-        />
-        <HomeBook
-          image={
-            "https://m.media-amazon.com/images/P/1118531647.01._SCLZZZZZZZ_SX500_.jpg"
-          }
-          title={"JavaScript and jQuery"}
-          edition={"1st Edition"}
-          author={"Jon Duckett"}
-          discountPrice={"$45"}
-          price={"$39.99"}
-        />
+        <HomeBook books={books} />
       </div>
     </div>
   );

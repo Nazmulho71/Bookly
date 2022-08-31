@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
 import Home from "./pages/home";
@@ -7,10 +7,6 @@ import Book from "./pages/book";
 import "./assets/css/App.css";
 
 function App() {
-  useEffect(() => {
-    document.title = "Buy Book Online | Bookly";
-  });
-
   return (
     <div className="app">
       <Header />
@@ -18,7 +14,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/search" element={<Search />} />
-        <Route path="/book" element={<Book />} />
+        <Route path="/books" element={<Book />} />
       </Routes>
     </div>
   );
