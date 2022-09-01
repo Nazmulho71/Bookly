@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useParams } from "react-router-dom";
 import Button from "@mui/material/Button";
 import Rating from "@mui/material/Rating";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
@@ -6,25 +7,20 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import BookDetails from "../components/BookDetails";
 import "../assets/css/book.css";
 
-function Book() {
+function Book({ books }) {
+  const { _id } = useParams();
+  const book = books.find((book) => book._id === _id);
+
+  console.log("_id", _id);
+  console.log("book", book);
+
+  useEffect(() => {
+    document.title = `${book.title}: ${book.subtitle}`;
+  }, []);
+
   return (
     <div className="book">
-      <BookDetails
-        image={
-          "https://m.media-amazon.com/images/P/1118531647.01._SCLZZZZZZZ_SX500_.jpg"
-        }
-        title={"JavaScript and jQuery"}
-        subtitle={"Interactive Front-End Web Development"}
-        edition={"1st Edition"}
-        author={"Jon Duckett"}
-        format={"Paperback"}
-        category={"Programming"}
-        publisher={"Wiley"}
-        publishDate={"December 24, 2013"}
-        discountPrice={"$45"}
-        price={"$39.99"}
-        page={"640"}
-      />
+      <BookDetails book={book} />
 
       <Button variant="contained">ORDER NOW</Button>
 
@@ -32,10 +28,10 @@ function Book() {
         <div>
           <h3>Description</h3>
           <div>
-            <span>2.5 out of 5</span>
+            <span>{book.rating} out of 5</span>
             <Rating
               name="half-rating-read"
-              defaultValue={2.5}
+              defaultValue={book.rating}
               precision={0.5}
               readOnly
             />
@@ -43,12 +39,7 @@ function Book() {
         </div>
         <hr />
         <p>
-          In JavaScript and jQuery: Interactive Front-End Development,
-          best-selling author Jon Duckett delivers a fully illustrated guide to
-          making your websites more interactive and your interfaces more
-          interesting and intuitive. In the book, you'll explore basic
-          programming concepts that assume no prior knowledge of programming
-          beyond an ability to create a web page using HTML & CSS.{" "}
+          {book.description}&nbsp;
           <span>
             Read more <KeyboardArrowDownIcon />
           </span>

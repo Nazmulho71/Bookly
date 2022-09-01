@@ -1,6 +1,6 @@
 .bookDetails {
   display: flex;
-  align-items: start;
+  align-items: flex-start;
 }
 
 .bookDetails__details {

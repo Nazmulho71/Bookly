@@ -1,67 +1,58 @@
 import React from "react";
 import "../assets/css/BookDetails.css";
 
-function BookDetails({
-  image,
-  title,
-  subtitle,
-  edition,
-  author,
-  format,
-  category,
-  publisher,
-  publishDate,
-  discountPrice,
-  price,
-  page,
-}) {
+function BookDetails({ book }) {
+  console.log("bookComp", book);
+
   return (
     <div className="bookDetails">
-      <img src={image} alt="" width={280} />
+      <img src={book.image} alt="" width={280} />
 
       <div className="bookDetails__details">
         <div>
-          <h3>{title}</h3>
-          <h3>{subtitle}</h3>
-          <p style={{ marginLeft: 5 }}>{edition}</p>
+          <h3>{book.title}:&nbsp;</h3>
+          <h3>{book.subtitle}</h3>
+          <p style={{ marginLeft: 5 }}>{book.edition}</p>
         </div>
 
         <hr />
 
         <div>
           <span>Author:&nbsp;</span>
-          <p>{author}</p>
+          <p>{book.author}</p>
         </div>
 
         <div>
           <span>Format:&nbsp;</span>
-          <p>{format}</p>
+          <p>{book.format}</p>
         </div>
 
         <div>
           <span>Category:&nbsp;</span>
-          <p>{category}</p>
+          <p>{book.category.name}</p>
         </div>
 
         <div>
           <span>Publisher:&nbsp;</span>
-          <p>{publisher}</p>
+          <p>{book.publisher}</p>
         </div>
 
         <div>
           <span>Published:&nbsp;</span>
-          <p>{publishDate}</p>
+          <p>{book.publishDate}</p>
         </div>
 
         <div>
           <span>Price:&nbsp;</span>
-          <p style={{ textDecorationLine: "line-through" }}>{discountPrice}</p>
-          <p style={{ color: "#000" }}>&nbsp;{price}</p>
+          <p style={{ textDecorationLine: "line-through" }}>
+            ${book.discountPrice}
+          </p>
+          <p style={{ color: "#000" }}>&nbsp;${book.price}</p>
         </div>
 
         <div>
           <span>Pages:&nbsp;</span>
-          <p>{page}</p>
+          <p>{book.page}</p>
         </div>
       </div>
     </div>

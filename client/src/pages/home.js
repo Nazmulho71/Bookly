@@ -1,31 +1,11 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useEffect } from "react";
 import Hero from "../assets/images/Hero.png";
 import HomeBook from "../components/HomeBook";
 import "../assets/css/home.css";
 
-function Home() {
-  const [books, setBooks] = useState([]);
-
+function Home({ books }) {
   useEffect(() => {
     document.title = "Buy Book Online | Bookly";
-  });
-
-  useEffect(() => {
-    let baseUrl = "http://localhost:3000/api";
-    let config = {
-      method: "get",
-      url: baseUrl + "/books",
-      headers: {},
-    };
-
-    axios(config)
-      .then(function (res) {
-        setBooks(res.data);
-      })
-      .catch(function (err) {
-        console.log(err);
-      });
   }, []);
 
   return (
