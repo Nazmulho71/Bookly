@@ -1,6 +1,6 @@
+const mongoose = require("mongoose");
 const moment = require("moment");
 const Joi = require("joi-oid");
-const mongoose = require("mongoose");
 
 const rentalSchema = new mongoose.Schema({
   customer: {

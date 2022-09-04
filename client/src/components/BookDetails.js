@@ -2,11 +2,9 @@ import React from "react";
 import "../assets/css/BookDetails.css";
 
 function BookDetails({ book }) {
-  console.log("bookComp", book);
-
   return (
     <div className="bookDetails">
-      <img src={book.image} alt="" width={280} />
+      <img src={book.image} alt="" width={280} height={340} />
 
       <div className="bookDetails__details">
         <div>

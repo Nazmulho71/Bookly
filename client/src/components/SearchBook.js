@@ -15,7 +15,7 @@ function SearchBook({
 }) {
   return (
     <div className="searchBook">
-      <img src={image} alt="" width={220} />
+      <img src={image} alt="" width={220} height={280} />
 
       <div className="searchBook__details">
         <div>

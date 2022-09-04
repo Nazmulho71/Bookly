@@ -1,5 +1,5 @@
-const Joi = require("joi-oid");
 const mongoose = require("mongoose");
+const Joi = require("joi-oid");
 
 const categorySchema = new mongoose.Schema({
   name: {
@@ -20,6 +20,6 @@ function validateCategory(category) {
   return schema.validate(category);
 }
 
-exports.schema = categorySchema;
+exports.categorySchema = categorySchema;
 exports.Category = Category;
 exports.validateCategory = validateCategory;

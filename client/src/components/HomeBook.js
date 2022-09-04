@@ -6,11 +6,13 @@ import Rating from "@mui/material/Rating";
 import "../assets/css/HomeBook.css";
 
 function Book({ books }) {
+  console.log(books);
+
   return (
     <>
       {books.map((book, i) => (
         <Link to={`/books/${book._id}`} key={i} className="homeBook">
-          <img src={book.image} alt="" width={180} />
+          <img src={book.image} alt="" width={180} height={240} />
 
           <div className="homeBook__details">
             <div>

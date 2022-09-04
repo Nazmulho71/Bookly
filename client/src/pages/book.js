@@ -8,11 +8,8 @@ import BookDetails from "../components/BookDetails";
 import "../assets/css/book.css";
 
 function Book({ books }) {
-  const { _id } = useParams();
-  const book = books.find((book) => book._id === _id);
-
-  console.log("_id", _id);
-  console.log("book", book);
+  const { id } = useParams();
+  const book = books.find((book) => book._id === id);
 
   useEffect(() => {
     document.title = `${book.title}: ${book.subtitle}`;

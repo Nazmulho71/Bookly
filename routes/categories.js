@@ -1,10 +1,10 @@
-const auth = require("../middleware/auth");
-const admin = require("../middleware/admin");
-const objectId = require("../middleware/objectId");
-const validate = require("../middleware/validate");
-const { Category, validateCategory } = require("../models/category");
 const express = require("express");
 const router = express.Router();
+const objectId = require("../middleware/objectId");
+const auth = require("../middleware/auth");
+const admin = require("../middleware/admin");
+const validate = require("../middleware/validate");
+const { Category, validateCategory } = require("../models/category");
 
 router.get("/", async (req, res) => {
   const categories = await Category.find().sort("name").select("name");
@@ -27,7 +27,7 @@ router.post("/", [auth, validate(validateCategory)], async (req, res) => {
 
 router.put(
   "/:id",
-  [auth, admin, objectId, validate(validateCategory)],
+  [auth, objectId, validate(validateCategory)],
   async (req, res) => {
     const category = await Category.findByIdAndUpdate(
       req.params.id,

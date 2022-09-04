@@ -34,7 +34,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home books={books} />} />
         <Route path="/search" element={<Search />} />
-        <Route path="/books/:_id" element={<Book books={books} />} />
+        <Route path="/books/:id" element={<Book books={books} />} />
       </Routes>
     </div>
   );

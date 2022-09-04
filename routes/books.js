@@ -5,11 +5,12 @@ const objectId = require("../middleware/objectId");
 const validate = require("../middleware/validate");
 const { Book, validateBook } = require("../models/book");
 const { Category } = require("../models/category");
+const { Review } = require("../models/review");
 const express = require("express");
 const router = express.Router();
 
 router.get("/", async (req, res) => {
-  const books = await Book.find().sort("title").select("-__v");
+  const books = await Book.find().sort("title");
   res.send(books);
 });
 
@@ -45,7 +46,6 @@ router.post("/", [auth, validate(validateBook)], async (req, res) => {
     dailyRentalRate: req.body.dailyRentalRate,
     freeShipping: req.body.numberInStock >= 50,
     rating: req.body.rating,
-    review: req.body.review,
   });
   await book.save();
 
@@ -54,7 +54,7 @@ router.post("/", [auth, validate(validateBook)], async (req, res) => {
 
 router.put(
   "/:id",
-  [auth, admin, objectId, validate(validateBook)],
+  [auth, objectId, validate(validateBook)],
   async (req, res) => {
     const category = await Category.findById(req.body.categoryId);
     if (!category) return res.status(400).send("Invalid category.");
@@ -81,7 +81,6 @@ router.put(
         discountPrice: req.body.discountPrice,
         dailyRentalRate: req.body.dailyRentalRate,
         rating: req.body.rating,
-        review: req.body.review,
       },
       { new: true }
     );

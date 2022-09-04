@@ -1,5 +1,5 @@
-const Joi = require("joi-oid");
 const mongoose = require("mongoose");
+const Joi = require("joi-oid");
 
 const Customer = mongoose.model(
   "Customer",

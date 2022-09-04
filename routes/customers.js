@@ -30,7 +30,7 @@ router.post("/", [auth, validate(validateCustomer)], async (req, res) => {
 
 router.put(
   "/:id",
-  [auth, admin, objectId, validate(validateCustomer)],
+  [auth, objectId, validate(validateCustomer)],
   async (req, res) => {
     const customer = await Customer.findByIdAndUpdate(
       req.params.id,
