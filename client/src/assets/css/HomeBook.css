@@ -1,6 +1,7 @@
 .homeBook {
   display: flex;
   align-items: center;
+  color: #000;
   margin: 20px;
   border-radius: 10px;
   text-decoration: none;
@@ -51,13 +52,6 @@
   font-weight: 700;
   font-size: 18px;
   margin-bottom: 3px;
-}
-
-.homeBook__details-discount {
-  font-weight: 500;
-  text-decoration-line: line-through;
-  color: #999999;
-  margin-right: 10px;
 }
 
 .homeBook__details > div .MuiSvgIcon-root:first-child {

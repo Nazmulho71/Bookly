@@ -1,0 +1,37 @@
+.bookDescription {
+  margin: 20px 0;
+}
+
+.bookDescription h3 {
+  font-weight: 700;
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+
+.bookDescription p {
+  font-weight: 500;
+  font-size: 20px;
+  color: #999999;
+}
+
+.bookDescription > div:first-child,
+.bookDescription > div:first-child div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.bookDescription > div:first-child div > span:first-child {
+  font-weight: 700;
+  font-size: 20px;
+  margin-right: 10px;
+}
+
+.bookDescription p span {
+  color: #61cef7;
+  cursor: pointer;
+}
+
+.bookDescription p span .MuiSvgIcon-root {
+  margin-bottom: -5px;
+}

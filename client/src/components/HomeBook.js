@@ -6,8 +6,6 @@ import Rating from "@mui/material/Rating";
 import "../assets/css/HomeBook.css";
 
 function Book({ books }) {
-  console.log(books);
-
   return (
     <>
       {books.map((book, i) => (
@@ -25,16 +23,27 @@ function Book({ books }) {
             <Rating
               name="half-book.rating-read"
               defaultValue={book.rating}
-              precision={0.5}
+              precision={0.1}
               size="small"
               readOnly
             />
 
             <div>
-              <span className="homeBook__details-discount">
-                ${book.discountPrice}
+              <span
+                style={{
+                  color: book.discountPrice && "#999",
+                  textDecorationLine: book.discountPrice && "line-through",
+                }}
+              >
+                ${book.price}
               </span>
-              <span>${book.price}</span>
+              {book.discountPrice && (
+                <span
+                  style={{ color: book.discountPrice ? "#c13207" : "#000" }}
+                >
+                  &nbsp;${book.discountPrice}
+                </span>
+              )}
             </div>
 
             <div>

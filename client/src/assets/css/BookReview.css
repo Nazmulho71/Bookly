@@ -1,0 +1,31 @@
+.bookReview {
+  margin: 20px 0;
+}
+
+.bookReview h3 {
+  font-weight: 700;
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+
+.bookReview p {
+  font-weight: 500;
+  font-size: 20px;
+  color: #999999;
+}
+
+.bookReview div {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.bookReview span {
+  font-weight: 700;
+  font-size: 20px;
+  margin-left: 10px;
+}
+
+.bookReview p {
+  margin-bottom: 20px;
+}

@@ -8,8 +8,8 @@ function BookDetails({ book }) {
 
       <div className="bookDetails__details">
         <div>
-          <h3>{book.title}:&nbsp;</h3>
-          <h3>{book.subtitle}</h3>
+          <h3>{book.title}</h3>
+          {book.subtitle && <h3>:&nbsp;{book.subtitle}</h3>}
           <p style={{ marginLeft: 5 }}>{book.edition}</p>
         </div>
 
@@ -42,10 +42,16 @@ function BookDetails({ book }) {
 
         <div>
           <span>Price:&nbsp;</span>
-          <p style={{ textDecorationLine: "line-through" }}>
-            ${book.discountPrice}
+          <p
+            style={{ textDecorationLine: book.discountPrice && "line-through" }}
+          >
+            ${book.price}
           </p>
-          <p style={{ color: "#000" }}>&nbsp;${book.price}</p>
+          {book.discountPrice && (
+            <p style={{ color: book.discountPrice && "#c13207" }}>
+              &nbsp;${book.discountPrice}
+            </p>
+          )}
         </div>
 
         <div>

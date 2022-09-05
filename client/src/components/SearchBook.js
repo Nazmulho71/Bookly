@@ -31,7 +31,7 @@ function SearchBook({
           <Rating
             name="half-rating-read"
             defaultValue={2.5}
-            precision={0.5}
+            precision={0.1}
             size="large"
             readOnly
           />
@@ -40,7 +40,9 @@ function SearchBook({
 
         <div className="searchBook__details-price">
           <span>{discountPrice}</span>
-          <span>{price}</span>
+          <span style={{ color: discountPrice ? "#c13207" : "#000" }}>
+            {price}
+          </span>
         </div>
 
         <p>{description}</p>
