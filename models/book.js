@@ -44,7 +44,7 @@ const bookSchema = new mongoose.Schema({
   description: {
     type: String,
     minLength: 5,
-    maxLength: 255,
+    maxLength: 10000,
     required: true,
   },
   page: {
@@ -109,7 +109,7 @@ function validateBook(book) {
     categoryId: Joi.objectId(),
     price: Joi.number().min(10).max(1000).required(),
     author: Joi.string().min(5).max(255).required(),
-    description: Joi.string().min(5).max(255).required(),
+    description: Joi.string().min(5).max(10000).required(),
     page: Joi.number().min(5).max(1000).required(),
     format: Joi.string().min(5).max(255).required(),
     publisher: Joi.string().min(5).max(255).required(),
