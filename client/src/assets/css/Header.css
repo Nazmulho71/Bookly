@@ -41,7 +41,7 @@
 .header__search-home input {
   width: 700px;
   height: 41px;
-  font-family: "Quicksand", sans-serif;
+  font-family: "Quicksand";
   font-weight: 600;
   font-size: 18px;
   padding-left: 40px;

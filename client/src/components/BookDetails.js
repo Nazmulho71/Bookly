@@ -1,62 +1,73 @@
 import React from "react";
 import "../assets/css/BookDetails.css";
 
-function BookDetails({ book }) {
+function BookDetails({
+  image,
+  title,
+  subtitle,
+  edition,
+  author,
+  format,
+  category,
+  publisher,
+  publishDate,
+  discountPrice,
+  price,
+  page,
+}) {
   return (
     <div className="bookDetails">
-      <img src={book.image} alt="" width={280} height={340} />
+      <img src={image} alt="" width={280} height={340} />
 
       <div className="bookDetails__details">
         <div>
-          <h3>{book.title}</h3>
-          {book.subtitle && <h3>:&nbsp;{book.subtitle}</h3>}
-          <p style={{ marginLeft: 5 }}>{book.edition}</p>
+          <h3>{title}</h3>
+          {subtitle && <h3>:&nbsp;{subtitle}</h3>}
+          <p style={{ marginLeft: 5 }}>{edition}</p>
         </div>
 
         <hr />
 
         <div>
           <span>Author:&nbsp;</span>
-          <p>{book.author}</p>
+          <p>{author}</p>
         </div>
 
         <div>
           <span>Format:&nbsp;</span>
-          <p>{book.format}</p>
+          <p>{format}</p>
         </div>
 
         <div>
           <span>Category:&nbsp;</span>
-          <p>{book.category.name}</p>
+          <p>{category.name}</p>
         </div>
 
         <div>
           <span>Publisher:&nbsp;</span>
-          <p>{book.publisher}</p>
+          <p>{publisher}</p>
         </div>
 
         <div>
           <span>Published:&nbsp;</span>
-          <p>{book.publishDate}</p>
+          <p>{publishDate}</p>
         </div>
 
         <div>
           <span>Price:&nbsp;</span>
-          <p
-            style={{ textDecorationLine: book.discountPrice && "line-through" }}
-          >
-            ${book.price}
+          <p style={{ textDecorationLine: discountPrice && "line-through" }}>
+            ${price}
           </p>
-          {book.discountPrice && (
-            <p style={{ color: book.discountPrice && "#c13207" }}>
-              &nbsp;${book.discountPrice}
+          {discountPrice && (
+            <p style={{ color: discountPrice && "#c13207" }}>
+              &nbsp;${discountPrice}
             </p>
           )}
         </div>
 
         <div>
           <span>Pages:&nbsp;</span>
-          <p>{book.page}</p>
+          <p>{page}</p>
         </div>
       </div>
     </div>

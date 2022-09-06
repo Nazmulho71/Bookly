@@ -27,3 +27,7 @@ hr {
   opacity: 0.2;
   margin-bottom: 20px;
 }
+
+button {
+  font-family: "Quicksand" !important;
+}

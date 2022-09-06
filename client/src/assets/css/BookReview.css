@@ -2,6 +2,12 @@
   margin: 20px 0;
 }
 
+.bookReview > div:first-child {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .bookReview h3 {
   font-weight: 700;
   font-size: 30px;
@@ -20,7 +26,7 @@
   margin-bottom: 5px;
 }
 
-.bookReview span {
+.bookReview > div > span {
   font-weight: 700;
   font-size: 20px;
   margin-left: 10px;

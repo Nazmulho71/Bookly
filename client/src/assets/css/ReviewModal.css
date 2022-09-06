@@ -1,0 +1,12 @@
+.MuiBox-root {
+  border-radius: 10px;
+  border: none !important;
+}
+
+.MuiBox-root textarea {
+  width: 100%;
+  height: 100px;
+  font-family: "Quicksand";
+  font-size: 18px;
+  outline: none;
+}
