@@ -55,8 +55,13 @@
   color: #999999;
 }
 
-.header__button > .MuiButtonBase-root:first-child,
-.header__button-home > .MuiButtonBase-root:first-child {
+.header__button > a,
+.header__button-home > a {
+  text-decoration: none;
+}
+
+.header__button > a:first-child > .MuiButtonBase-root,
+.header__button-home > a:first-child > .MuiButtonBase-root {
   background: linear-gradient(
     107.56deg,
     #f2709b 24.95%,
@@ -65,18 +70,18 @@
   margin-right: 20px;
 }
 
-.header__button-home > .MuiButtonBase-root:last-child {
+.header__button-home > a:last-child > .MuiButtonBase-root {
   color: #fff !important;
   background: linear-gradient(107.56deg, #5669df 20.18%, #61cef7 100%);
 }
 
-.header__button > .MuiButtonBase-root:last-child {
+.header__button > a:last-child > .MuiButtonBase-root {
   color: #61cef7 !important;
   background: #fff;
 }
 
-.header__button > .MuiButtonBase-root,
-.header__button-home > .MuiButtonBase-root {
+.header__button > a > .MuiButtonBase-root,
+.header__button-home > a > .MuiButtonBase-root {
   width: 160px !important;
   height: 48px !important;
   color: #fff !important;

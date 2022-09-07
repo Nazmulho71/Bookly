@@ -27,8 +27,12 @@ function Header() {
       </div>
 
       <div className={home ? "header__button-home" : "header__button"}>
-        <Button variant="contained">Login</Button>
-        <Button variant="contained">Register</Button>
+        <Link to="/login">
+          <Button variant="contained">Login</Button>
+        </Link>
+        <Link to="/register">
+          <Button variant="contained">Register</Button>
+        </Link>
       </div>
     </div>
   );

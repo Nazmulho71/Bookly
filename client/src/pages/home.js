@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Hero from "../assets/images/Hero.png";
+import Header from "../components/Header";
 import HomeBook from "../components/HomeBook";
 import "../assets/css/home.css";
 
@@ -29,15 +30,18 @@ function Home() {
   }, []);
 
   return (
-    <div className="home">
-      <img src={Hero} alt="" width="100%" />
+    <>
+      <Header />
+      <div className="home">
+        <img src={Hero} alt="" width="100%" />
 
-      <h3>Featured Books</h3>
+        <h3>Featured Books</h3>
 
-      <div className="home__books">
-        <HomeBook books={books} />
+        <div className="home__books">
+          <HomeBook books={books} />
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 
