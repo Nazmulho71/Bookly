@@ -10,12 +10,18 @@ const express = require("express");
 const router = express.Router();
 
 router.get("/", async (req, res) => {
-  const books = await Book.find().sort("title");
+  const books = await Book.find().sort("title").populate({
+    path: "reviews.user",
+    select: "-password -__v",
+  });
   res.send(books);
 });
 
 router.get("/:id", objectId, async (req, res) => {
-  const book = await Book.findById(req.params.id);
+  const book = await Book.findById(req.params.id).populate({
+    path: "reviews.user",
+    select: "-password -__v",
+  });
   if (!book) return res.status(404).send("Book not found.");
 
   res.send(book);

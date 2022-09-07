@@ -19,7 +19,7 @@ function BookReview({ baseUrl, id, reviews }) {
       url: `${baseUrl}/books/${id}/reviews`,
       headers: {
         "X-Auth-Token":
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzA0YmQyMWRlMmJkOWMwMTk0OGIyNDYiLCJhZG1pbiI6dHJ1ZSwiaWF0IjoxNjYyMzc3ODQ0fQ.TLxmQaTYQfLyMtJOHU-Adm346mCUUhiSfYkfbpYYVjg",
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzA0YmQyYmRlMmJkOWMwMTk0OGIyNDkiLCJhZG1pbiI6ZmFsc2UsImlhdCI6MTY2MjUxMDQwM30.woauU9IwqnlX030Tq9BOZO1PIVIrbjKOXViI2aN4Hfo",
         "Content-Type": "application/json",
       },
       data: data,
@@ -62,7 +62,7 @@ function BookReview({ baseUrl, id, reviews }) {
           <Fragment key={i}>
             <div>
               <AccountCircleIcon />
-              <span>User</span>
+              <span>{review.user.name}</span>
             </div>
             <p>{review.comment}</p>
           </Fragment>

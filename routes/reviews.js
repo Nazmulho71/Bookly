@@ -8,7 +8,10 @@ const { Review, validateReview } = require("../models/review");
 const { Book } = require("../models/book");
 
 router.get("/:id/reviews", objectId, async (req, res) => {
-  const book = await Book.findById(req.params.id);
+  const book = await Book.findById(req.params.id).populate({
+    path: "reviews.user",
+    select: "-password -__v",
+  });
   if (!book) return res.status(404).send("Book not found.");
   res.send(book.reviews);
 });
