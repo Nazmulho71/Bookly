@@ -1,9 +1,10 @@
 import React, { Fragment, useState } from "react";
 import axios from "axios";
+import Cookies from "universal-cookie";
 import Button from "@mui/material/Button";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import "../assets/css/BookReview.css";
 import ReviewModal from "./ReviewModal";
+import "../assets/css/BookReview.css";
 
 function BookReview({ baseUrl, id, reviews }) {
   const [comment, setComment] = useState("");
@@ -11,20 +12,16 @@ function BookReview({ baseUrl, id, reviews }) {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  function getCookie(name) {
-    const value = `; ${document.cookie}`;
-    const parts = value.split(`; ${name}=`);
-    if (parts.length === 2) return parts.pop().split(";").shift();
-  }
+  const cookies = new Cookies();
+  const token = cookies.get("token");
 
   const createComment = async () => {
     let data = JSON.stringify({ comment });
-
     let config = {
       method: "post",
       url: `${baseUrl}/books/${id}/reviews`,
       headers: {
-        "X-Auth-Token": getCookie("token"),
+        "X-Auth-Token": token,
         "Content-Type": "application/json",
       },
       data: data,

@@ -23,6 +23,7 @@ function Register() {
     axios(config)
       .then(function (res) {
         setErr("");
+        localStorage.setItem("user", JSON.stringify(res.data));
         window.location.href = "/login";
       })
       .catch(function (err) {
@@ -40,13 +41,13 @@ function Register() {
           onChange={(e) => setName(e.target.value)}
         />
         <input
-          type="text"
+          type="email"
           value={email}
           placeholder="Enter your email"
           onChange={(e) => setEmail(e.target.value)}
         />
         <input
-          type="text"
+          type="password"
           value={password}
           placeholder="Enter your Password"
           onChange={(e) => setPassword(e.target.value)}

@@ -1,15 +1,18 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import Rating from "@mui/material/Rating";
 import "../assets/css/HomeBook.css";
 
 function Book({ books }) {
+  const navigateBook = (book) => {
+    window.location.href = `/books/${book._id}`;
+  };
+
   return (
     <>
       {books.map((book, i) => (
-        <Link to={`/books/${book._id}`} key={i} className="homeBook">
+        <div className="homeBook" key={i} onClick={() => navigateBook(book)}>
           <img src={book.image} alt="" width={180} height={240} />
 
           <div className="homeBook__details">
@@ -51,7 +54,7 @@ function Book({ books }) {
               <FavoriteIcon />
             </div>
           </div>
-        </Link>
+        </div>
       ))}
     </>
   );

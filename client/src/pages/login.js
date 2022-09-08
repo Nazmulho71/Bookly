@@ -34,13 +34,13 @@ function Login() {
     <div className="login">
       <form onSubmit={handleSubmit}>
         <input
-          type="text"
+          type="email"
           value={email}
           placeholder="Enter your email"
           onChange={(e) => setEmail(e.target.value)}
         />
         <input
-          type="text"
+          type="password"
           value={password}
           placeholder="Enter your Password"
           onChange={(e) => setPassword(e.target.value)}

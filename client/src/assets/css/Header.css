@@ -6,6 +6,10 @@
   padding: 10px 20px;
 }
 
+.header__logo {
+  cursor: pointer;
+}
+
 .header__search,
 .header__search-home {
   background: linear-gradient(90deg, #5669df 30.14%, #61cef7 100%);
@@ -55,33 +59,29 @@
   color: #999999;
 }
 
-.header__button > a,
-.header__button-home > a {
-  text-decoration: none;
+.header__profile > .MuiAvatar-root {
+  background: #f2709b;
+  cursor: pointer;
 }
 
-.header__button > a:first-child > .MuiButtonBase-root,
-.header__button-home > a:first-child > .MuiButtonBase-root {
-  background: linear-gradient(
-    107.56deg,
-    #f2709b 24.95%,
-    #ff9472 100%
-  ) !important;
+.header__button > .MuiButtonBase-root:first-child,
+.header__button-home > .MuiButtonBase-root:first-child {
+  background: linear-gradient(107.56deg, #f2709b 24.95%, #ff9472 100%);
   margin-right: 20px;
 }
 
-.header__button-home > a:last-child > .MuiButtonBase-root {
+.header__button-home > .MuiButtonBase-root:last-child {
   color: #fff !important;
   background: linear-gradient(107.56deg, #5669df 20.18%, #61cef7 100%);
 }
 
-.header__button > a:last-child > .MuiButtonBase-root {
+.header__button > .MuiButtonBase-root:last-child {
   color: #61cef7 !important;
   background: #fff;
 }
 
-.header__button > a > .MuiButtonBase-root,
-.header__button-home > a > .MuiButtonBase-root {
+.header__button > .MuiButtonBase-root,
+.header__button-home > .MuiButtonBase-root {
   width: 160px !important;
   height: 48px !important;
   color: #fff !important;
