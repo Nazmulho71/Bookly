@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import axios from "axios";
 import "../assets/css/login.css";
 
-function Login() {
+function Register() {
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [err, setErr] = useState("");
@@ -11,10 +12,10 @@ function Login() {
     e.preventDefault();
 
     let baseUrl = "http://localhost:3000/api";
-    let data = JSON.stringify({ email, password });
+    let data = JSON.stringify({ name, email, password });
     let config = {
       method: "post",
-      url: `${baseUrl}/auth`,
+      url: `${baseUrl}/users`,
       headers: { "Content-Type": "application/json" },
       data: data,
     };
@@ -22,8 +23,7 @@ function Login() {
     axios(config)
       .then(function (res) {
         setErr("");
-        document.cookie = "token=" + res.data;
-        window.location.href = "/";
+        window.location.href = "/login";
       })
       .catch(function (err) {
         setErr(err.response.data);
@@ -31,8 +31,14 @@ function Login() {
   };
 
   return (
-    <div className="login">
+    <div className="register">
       <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          value={name}
+          placeholder="Enter your name"
+          onChange={(e) => setName(e.target.value)}
+        />
         <input
           type="text"
           value={email}
@@ -46,7 +52,7 @@ function Login() {
           onChange={(e) => setPassword(e.target.value)}
         />
 
-        <button type="submit">Login</button>
+        <button type="submit">Register</button>
 
         <p>{err}</p>
       </form>
@@ -54,4 +60,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default Register;

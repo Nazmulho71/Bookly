@@ -11,6 +11,12 @@ function BookReview({ baseUrl, id, reviews }) {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
+  function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(";").shift();
+  }
+
   const createComment = async () => {
     let data = JSON.stringify({ comment });
 
@@ -18,8 +24,7 @@ function BookReview({ baseUrl, id, reviews }) {
       method: "post",
       url: `${baseUrl}/books/${id}/reviews`,
       headers: {
-        "X-Auth-Token":
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzA0YmQyYmRlMmJkOWMwMTk0OGIyNDkiLCJhZG1pbiI6ZmFsc2UsImlhdCI6MTY2MjUxMDQwM30.woauU9IwqnlX030Tq9BOZO1PIVIrbjKOXViI2aN4Hfo",
+        "X-Auth-Token": getCookie("token"),
         "Content-Type": "application/json",
       },
       data: data,
