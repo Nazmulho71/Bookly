@@ -18,20 +18,20 @@
   font-weight: 500;
   font-size: 20px;
   color: #999999;
+  margin-top: -5px;
+  margin-bottom: 20px;
 }
 
-.bookReview div {
+.bookReview > div,
+.bookReview > div > div {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   margin-bottom: 5px;
 }
 
-.bookReview > div > span {
+.bookReview > div > div > span {
   font-weight: 700;
   font-size: 20px;
   margin-left: 10px;
-}
-
-.bookReview p {
-  margin-bottom: 20px;
 }

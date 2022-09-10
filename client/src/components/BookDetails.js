@@ -1,4 +1,5 @@
 import React from "react";
+import moment from "moment";
 import "../assets/css/BookDetails.css";
 
 function BookDetails({
@@ -50,7 +51,7 @@ function BookDetails({
 
         <div>
           <span>Published:&nbsp;</span>
-          <p>{publishDate}</p>
+          <p>{moment(publishDate).format("MMMM Do YYYY")}</p>
         </div>
 
         <div>

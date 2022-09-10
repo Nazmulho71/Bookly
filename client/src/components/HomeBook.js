@@ -24,7 +24,6 @@ function Book({ books }) {
 
             <p>{book.author}</p>
             <Rating
-              name="half-book.rating-read"
               defaultValue={book.rating}
               precision={0.1}
               size="small"

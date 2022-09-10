@@ -9,7 +9,7 @@ function BookDescription({ rating, description }) {
 
   const ShortDescription = ({ content, limit }) => {
     if (content.length <= limit) {
-      return <div>{content}</div>;
+      return <p>{content}</p>;
     }
     if (showAll) {
       return (
@@ -37,13 +37,8 @@ function BookDescription({ rating, description }) {
       <div>
         <h3>Description</h3>
         <div>
-          <span>{rating ? rating : "0"} out of 5</span>
-          <Rating
-            name="half-rating-read"
-            defaultValue={rating}
-            precision={0.1}
-            readOnly
-          />
+          <span>{rating} out of 5</span>
+          <Rating defaultValue={rating} precision={0.1} readOnly size="large" />
         </div>
       </div>
       <hr />

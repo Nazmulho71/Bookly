@@ -1,8 +1,9 @@
 import React from "react";
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
+import Rating from "@mui/material/Rating";
 import "../assets/css/ReviewModal.css";
 
 function ReviewModal({
@@ -10,6 +11,8 @@ function ReviewModal({
   handleClose,
   comment,
   setComment,
+  rating,
+  setRating,
   createComment,
 }) {
   const style = {
@@ -40,12 +43,23 @@ function ReviewModal({
         >
           Review this book
         </Typography>
+
         <Typography
           id="modal-modal-description"
           sx={{ mt: 2, mb: 1, fontFamily: "Quicksand", fontWeight: 500 }}
         >
           Share your thoughts with other customers
         </Typography>
+
+        <Rating
+          precision={0.1}
+          value={rating}
+          onChange={(e, rate) => {
+            setRating(rate);
+          }}
+          sx={{ mt: "-35px", mb: 2, float: "right" }}
+          size="large"
+        />
 
         <textarea
           value={comment}

@@ -43,7 +43,7 @@ function Header() {
           <Avatar
             onClick={() => {
               cookies.remove("token");
-              window.location.reload();
+              window.location.href = "/";
             }}
           >
             H
