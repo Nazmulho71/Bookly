@@ -5,7 +5,6 @@ import jwt_decode from "jwt-decode";
 import Button from "@mui/material/Button";
 import Rating from "@mui/material/Rating";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import EditIcon from "@mui/icons-material/Edit";
 import CreateReviewModal from "./CreateReviewModal";
 import UpdateReviewModal from "./UpdateReviewModal";
 import "../assets/css/BookReview.css";
@@ -14,7 +13,6 @@ function BookReview({ baseUrl, id, reviews }) {
   const [comment, setComment] = useState("");
   const [rating, setRating] = useState(0);
   const [reviewModal, setReviewModal] = useState(false);
-  const [commentModalOpen, setCommentModalOpen] = useState(false);
 
   const cookies = new Cookies();
   const token = cookies.get("token");
@@ -74,34 +72,13 @@ function BookReview({ baseUrl, id, reviews }) {
                 </p>
               </div>
               {review.user._id === decoded._id && (
-                <>
-                  <div>
-                    <Button
-                      sx={{ color: "#61cef7", textTransform: "none" }}
-                      onClick={() => setCommentModalOpen(true)}
-                    >
-                      <EditIcon
-                        sx={{
-                          mr: 1,
-                          fontSize: 18,
-                          textTransform: "",
-                        }}
-                      />{" "}
-                      Edit Comment
-                    </Button>
-                  </div>
-                  {commentModalOpen && (
-                    <UpdateReviewModal
-                      open={commentModalOpen}
-                      handleClose={() => setCommentModalOpen(false)}
-                      baseUrl={baseUrl}
-                      token={token}
-                      review={review}
-                      comment={comment}
-                      setComment={setComment}
-                    />
-                  )}
-                </>
+                <UpdateReviewModal
+                  baseUrl={baseUrl}
+                  token={token}
+                  review={review}
+                  comment={comment}
+                  setComment={setComment}
+                />
               )}
             </div>
 

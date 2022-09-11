@@ -1,19 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
+import EditIcon from "@mui/icons-material/Edit";
 
-function EditCommentModal({
-  open,
-  handleClose,
-  baseUrl,
-  token,
-  review,
-  comment,
-  setComment,
-}) {
+function EditCommentModal({ baseUrl, token, review, comment, setComment }) {
+  const [commentModalOpen, setCommentModalOpen] = useState(false);
+
   const style = {
     position: "absolute",
     top: "50%",
@@ -45,7 +40,7 @@ function EditCommentModal({
   };
 
   const deleteReview = () => {
-    var config = {
+    let config = {
       method: "delete",
       url: `${baseUrl}/books/${review.book}/reviews/${review._id}`,
       headers: { "X-Auth-Token": token },
@@ -61,57 +56,77 @@ function EditCommentModal({
   };
 
   return (
-    <Modal
-      open={open}
-      onClose={handleClose}
-      aria-labelledby="modal-modal-title"
-    >
-      <Box sx={style}>
-        <Typography
-          id="modal-modal-title"
-          variant="h6"
-          component="h2"
-          sx={{ mb: 2, fontFamily: "Quicksand", fontWeight: 700 }}
+    <>
+      <div>
+        <Button
+          sx={{ color: "#61cef7", textTransform: "none" }}
+          onClick={() => setCommentModalOpen(true)}
         >
+          <EditIcon
+            sx={{
+              mr: 1,
+              fontSize: 18,
+              textTransform: "",
+            }}
+          />{" "}
           Edit Comment
-        </Typography>
-
-        <textarea
-          value={comment}
-          onChange={(e) => setComment(e.target.value)}
-        ></textarea>
-
-        <Button
-          variant="contained"
-          sx={{
-            mt: 1,
-            width: "100%",
-            boxShadow: "none",
-            background: "#5669df",
-            textTransform: "none",
-          }}
-          type="submit"
-          onClick={() => updateReview()}
-        >
-          Update
         </Button>
+      </div>
 
-        <Button
-          sx={{
-            mt: 1,
-            mb: -1.6,
-            color: "#f2709b",
-            width: "100%",
-            boxShadow: "none",
-            textTransform: "none",
-          }}
-          type="submit"
-          onClick={() => deleteReview()}
+      {commentModalOpen && (
+        <Modal
+          open={commentModalOpen}
+          onClose={() => setCommentModalOpen(false)}
+          aria-labelledby="modal-modal-title"
         >
-          Delete Comment
-        </Button>
-      </Box>
-    </Modal>
+          <Box sx={style}>
+            <Typography
+              id="modal-modal-title"
+              variant="h6"
+              component="h2"
+              sx={{ mb: 2, fontFamily: "Quicksand", fontWeight: 700 }}
+            >
+              Edit Comment
+            </Typography>
+
+            <textarea
+              value={comment}
+              onChange={(e) => setComment(e.target.value)}
+            ></textarea>
+
+            <Button
+              variant="contained"
+              sx={{
+                mt: 1,
+                width: "100%",
+                boxShadow: "none",
+                background: "#5669df",
+                textTransform: "none",
+              }}
+              type="submit"
+              onClick={() => updateReview()}
+            >
+              Update
+            </Button>
+
+            <Button
+              sx={{
+                mt: 1,
+                mb: -1.6,
+                color: "#f2709b",
+                width: "100%",
+                boxShadow: "none",
+                textTransform: "none",
+              }}
+              type="submit"
+              onClick={() => deleteReview()}
+            >
+              Delete Comment
+            </Button>
+          </Box>
+        </Modal>
+      )}
+    </>
   );
 }
 
