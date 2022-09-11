@@ -8,8 +8,9 @@ import "../assets/css/home.css";
 function Home() {
   const [books, setBooks] = useState([]);
 
+  let baseUrl = "http://localhost:3000/api";
+
   useEffect(() => {
-    let baseUrl = "http://localhost:3000/api";
     let config = {
       method: "get",
       url: `${baseUrl}/books`,
@@ -23,7 +24,7 @@ function Home() {
       .catch(function (err) {
         console.log(err);
       });
-  }, []);
+  }, [baseUrl]);
 
   useEffect(() => {
     document.title = "Buy Book Online | Bookly";

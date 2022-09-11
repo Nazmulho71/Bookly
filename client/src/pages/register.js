@@ -8,10 +8,11 @@ function Register() {
   const [password, setPassword] = useState("");
   const [err, setErr] = useState("");
 
+  let baseUrl = "http://localhost:3000/api";
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    let baseUrl = "http://localhost:3000/api";
     let data = JSON.stringify({ name, email, password });
     let config = {
       method: "post",
@@ -23,7 +24,6 @@ function Register() {
     axios(config)
       .then(function (res) {
         setErr("");
-        localStorage.setItem("user", JSON.stringify(res.data));
         window.location.href = "/login";
       })
       .catch(function (err) {

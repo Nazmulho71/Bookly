@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { useLocation } from "react-router-dom";
 import Cookies from "universal-cookie";
 import Button from "@mui/material/Button";
@@ -10,8 +11,13 @@ import "../assets/css/Header.css";
 
 function Header() {
   const home = useLocation().pathname === "/";
+  const [username, setUsername] = useState();
+
   const cookies = new Cookies();
   const token = cookies.get("token");
+  const firstLetter = username?.charAt(0);
+
+  let baseUrl = "http://localhost:3000/api";
 
   const navigateHome = () => {
     window.location.href = "/";
@@ -22,6 +28,22 @@ function Header() {
   const navigateRegister = () => {
     window.location.href = "/register";
   };
+
+  useEffect(() => {
+    let config = {
+      method: "get",
+      url: `${baseUrl}/users/profile`,
+      headers: { "X-Auth-Token": token },
+    };
+
+    axios(config)
+      .then(function (res) {
+        setUsername(res.data.name);
+      })
+      .catch(function (err) {
+        console.log(err);
+      });
+  }, [baseUrl, token]);
 
   return (
     <div className="header" style={{ background: home && "#fff" }}>
@@ -46,7 +68,7 @@ function Header() {
               window.location.href = "/";
             }}
           >
-            H
+            {firstLetter}
           </Avatar>
         </div>
       ) : (

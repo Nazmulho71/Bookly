@@ -7,10 +7,11 @@ function Login() {
   const [password, setPassword] = useState("");
   const [err, setErr] = useState("");
 
+  let baseUrl = "http://localhost:3000/api";
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    let baseUrl = "http://localhost:3000/api";
     let data = JSON.stringify({ email, password });
     let config = {
       method: "post",
