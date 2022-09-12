@@ -36,20 +36,20 @@ function Register() {
       <form onSubmit={handleSubmit}>
         <input
           type="text"
-          value={name}
           placeholder="Enter your name"
+          value={name}
           onChange={(e) => setName(e.target.value)}
         />
         <input
           type="email"
-          value={email}
           placeholder="Enter your email"
+          value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
         <input
           type="password"
-          value={password}
           placeholder="Enter your Password"
+          value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
 

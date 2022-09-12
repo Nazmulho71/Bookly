@@ -8,6 +8,21 @@
   margin-left: 60px;
 }
 
+.bookDetails__details > div:first-child {
+  justify-content: space-between;
+}
+
+.bookDetails__details > div:first-child .MuiSvgIcon-root {
+  color: #f2709b;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.bookDetails__details > div > div {
+  display: flex;
+  align-items: center;
+}
+
 .bookDetails__details > div {
   display: flex;
   align-items: center;

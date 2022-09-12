@@ -19,6 +19,7 @@
 
 .header__search > div:first-child,
 .header__search-home > div:first-child {
+  display: flex;
   background-color: #eeeeee;
   border-radius: 10px;
 }
@@ -44,7 +45,7 @@
 .header__search input,
 .header__search-home input {
   width: 700px;
-  height: 41px;
+  height: 45px;
   font-family: "Quicksand";
   font-weight: 600;
   font-size: 18px;

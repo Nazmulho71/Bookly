@@ -10,14 +10,16 @@ import WhiteLogo from "../assets/images/WhiteLogo.svg";
 import "../assets/css/Header.css";
 
 function Header() {
-  const home = useLocation().pathname === "/";
+  const location = useLocation();
   const [username, setUsername] = useState();
+  const [q, setQ] = useState("");
 
   const cookies = new Cookies();
   const token = cookies.get("token");
-  const firstLetter = username?.charAt(0);
 
   let baseUrl = "http://localhost:3000/api";
+  let firstLetter = username?.charAt(0);
+  let home = location.pathname === "/";
 
   const navigateHome = () => {
     window.location.href = "/";
@@ -27,6 +29,9 @@ function Header() {
   };
   const navigateRegister = () => {
     window.location.href = "/register";
+  };
+  const navigateSearch = () => {
+    window.location.href = `/search?q=${q}`;
   };
 
   useEffect(() => {
@@ -56,7 +61,15 @@ function Header() {
           <Button>
             <SearchIcon />
           </Button>
-          <input type="text" placeholder="Search books" />
+          <input
+            type="text"
+            placeholder="Search books"
+            value={q}
+            onChange={(e) => setQ(e.target.value)}
+            onKeyPress={(e) => e.key === "Enter" && navigateSearch()}
+          />
+
+          <button style={{ display: "none" }}>Search</button>
         </div>
       </div>
 

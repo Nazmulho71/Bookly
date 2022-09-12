@@ -39,9 +39,9 @@ function SearchBook({
         </div>
 
         <div className="searchBook__details-price">
-          <span>{discountPrice}</span>
+          <span>${discountPrice}</span>
           <span style={{ color: discountPrice ? "#c13207" : "#000" }}>
-            {price}
+            ${price}
           </span>
         </div>
 

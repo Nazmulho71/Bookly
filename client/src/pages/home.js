@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Hero from "../assets/images/Hero.png";
-import Header from "../components/Header";
+import CircularProgress from "@mui/material/CircularProgress";
 import HomeBook from "../components/HomeBook";
+import Hero from "../assets/images/Hero.png";
 import "../assets/css/home.css";
 
 function Home() {
   const [books, setBooks] = useState([]);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   let baseUrl = "http://localhost:3000/api";
 
@@ -19,9 +20,11 @@ function Home() {
 
     axios(config)
       .then(function (res) {
+        setIsLoaded(true);
         setBooks(res.data);
       })
       .catch(function (err) {
+        setIsLoaded(true);
         console.log(err);
       });
   }, [baseUrl]);
@@ -31,18 +34,21 @@ function Home() {
   }, []);
 
   return (
-    <>
-      <Header />
-      <div className="home">
-        <img src={Hero} alt="" width="100%" />
+    <div className="home">
+      <img src={Hero} alt="" width="100%" />
 
-        <h3>Featured Books</h3>
+      <h3>Featured Books</h3>
 
-        <div className="home__books">
+      <div className="home__books">
+        {!isLoaded ? (
+          <div className="book__loader">
+            <CircularProgress />
+          </div>
+        ) : (
           <HomeBook books={books} />
-        </div>
+        )}
       </div>
-    </>
+    </div>
   );
 }
 
