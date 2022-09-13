@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useLocation, useSearchParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import Cookies from "universal-cookie";
 import Button from "@mui/material/Button";
 import SearchIcon from "@mui/icons-material/Search";

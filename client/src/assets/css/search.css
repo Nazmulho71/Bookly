@@ -7,5 +7,26 @@
 }
 
 .search__filter {
+  display: flex;
+  align-items: center;
   float: right;
+}
+
+.search__filter .MuiInputBase-root {
+  width: 160px;
+  height: 30px;
+  margin-left: 10px;
+}
+
+.search__filter .MuiInputBase-root > div:first-child {
+  font-size: 16px;
+  font-weight: 500;
+  font-family: "Quicksand";
+}
+
+.MuiPaper-root .MuiList-root .MuiButtonBase-root {
+  font-size: 16px;
+  font-weight: 500;
+  font-family: "Quicksand";
+  padding: 0 15px;
 }
