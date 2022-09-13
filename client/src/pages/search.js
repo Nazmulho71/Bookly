@@ -9,6 +9,7 @@ function Search() {
   const [searchParams] = useSearchParams();
   const [books, setBooks] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [filterParam, setFilterParam] = useState(["All"]);
   const [searchParam] = useState(["title", "author"]);
   const q = searchParams.get("q");
 
@@ -38,11 +39,19 @@ function Search() {
 
   const search = () => {
     return books.filter((book) => {
-      return searchParam.some((newBook) => {
-        return (
-          book[newBook].toString().toLowerCase().indexOf(q.toLowerCase()) > -1
-        );
-      });
+      if (book.category.name === filterParam) {
+        return searchParam.some((newBook) => {
+          return (
+            book[newBook].toString().toLowerCase().indexOf(q.toLowerCase()) > -1
+          );
+        });
+      } else if (filterParam === "All") {
+        return searchParam.some((newBook) => {
+          return (
+            book[newBook].toString().toLowerCase().indexOf(q.toLowerCase()) > -1
+          );
+        });
+      }
     });
   };
 
@@ -53,8 +62,25 @@ function Search() {
           <CircularProgress />
         </div>
       ) : (
-        search(books).map((book, i) => {
-          return (
+        <>
+          <div className="search__filter">
+            <label htmlFor="">Sort by Category: </label>
+            <select
+              name=""
+              id=""
+              onChange={(e) => setFilterParam(e.target.value)}
+              className="custom-select"
+              aria-label="Filter Books"
+            >
+              <option value="All">All</option>
+              <option value="Islamic">Islamic</option>
+              <option value="Programming">Programming</option>
+              <option value="Category1">Category1</option>
+            </select>
+            <span className="focus"></span>
+          </div>
+
+          {search(books).map((book, i) => (
             <>
               <SearchBook
                 key={i}
@@ -70,8 +96,8 @@ function Search() {
               />
               <hr />
             </>
-          );
-        })
+          ))}
+        </>
       )}
     </div>
   );

@@ -1,5 +1,7 @@
 import React from "react";
+import moment from "moment";
 import Rating from "@mui/material/Rating";
+import ShortDescription from "./ShortDescription";
 import "../assets/css/SearchBook.css";
 
 function SearchBook({
@@ -19,13 +21,15 @@ function SearchBook({
 
       <div className="searchBook__details">
         <div>
-          <h3>{title}:&nbsp;</h3>
-          <h3>{subtitle}</h3>
+          <h3>{title}</h3>
+          {subtitle && <h3>:&nbsp;{subtitle}</h3>}
           <p>{edition}</p>
         </div>
 
         <p style={{ fontSize: "16px" }}>{author}</p>
-        <p style={{ fontSize: "16px" }}>{publishDate}</p>
+        <p style={{ fontSize: "16px" }}>
+          {moment(publishDate).format("MMMM Do YYYY")}
+        </p>
 
         <div>
           <Rating
@@ -39,13 +43,24 @@ function SearchBook({
         </div>
 
         <div className="searchBook__details-price">
-          <span>${discountPrice}</span>
-          <span style={{ color: discountPrice ? "#c13207" : "#000" }}>
+          <span
+            style={{
+              color: discountPrice && "#999",
+              textDecorationLine: discountPrice && "line-through",
+            }}
+          >
             ${price}
           </span>
+          {discountPrice && (
+            <span style={{ color: discountPrice && "#c13207" }}>
+              &nbsp;${discountPrice}
+            </span>
+          )}
         </div>
 
-        <p>{description}</p>
+        <div className="bookDescription" style={{ margin: 0 }}>
+          <ShortDescription content={description} limit={400} />
+        </div>
       </div>
     </div>
   );

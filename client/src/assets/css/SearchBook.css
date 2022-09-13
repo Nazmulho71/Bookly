@@ -42,7 +42,5 @@
 }
 
 .searchBook__details-price > span:first-child {
-  text-decoration-line: line-through;
-  color: #999999;
   margin: 10px 10px 10px 0 !important;
 }

@@ -1,3 +1,11 @@
 .search {
   margin: 40px 80px;
 }
+
+.search > hr:last-child {
+  display: none;
+}
+
+.search__filter {
+  float: right;
+}
