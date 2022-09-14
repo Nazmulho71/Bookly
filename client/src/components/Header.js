@@ -77,8 +77,8 @@ function Header() {
         <div className="header__profile">
           <Avatar
             onClick={() => {
-              cookies.remove("token");
-              window.location.href = "/";
+              // cookies.remove("token");
+              window.location.href = "/profile";
             }}
           >
             {firstLetter}

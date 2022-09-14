@@ -2,10 +2,11 @@ import React from "react";
 import { useLocation, Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
 import Home from "./pages/home";
-import Search from "./pages/search";
-import Book from "./pages/book";
 import Login from "./pages/login";
 import Register from "./pages/register";
+import Profile from "./pages/profile";
+import Search from "./pages/search";
+import Book from "./pages/book";
 import "./assets/css/App.css";
 
 function App() {
@@ -20,10 +21,11 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/search" element={<Search />} />
-        <Route path="/books/:id" element={<Book />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/search" element={<Search />} />
+        <Route path="/books/:id" element={<Book />} />
       </Routes>
     </div>
   );

@@ -19,6 +19,25 @@ function Search() {
   const q = searchParams.get("q");
   let baseUrl = "http://localhost:3000/api";
 
+  const search = (books) => {
+    // eslint-disable-next-line array-callback-return
+    return books.filter((book) => {
+      if (book.category.name === filterParam) {
+        return searchParam.some((newItem) => {
+          return (
+            book[newItem].toString().toLowerCase().indexOf(q.toLowerCase()) > -1
+          );
+        });
+      } else if (filterParam === "All") {
+        return searchParam.some((newItem) => {
+          return (
+            book[newItem].toString().toLowerCase().indexOf(q.toLowerCase()) > -1
+          );
+        });
+      }
+    });
+  };
+
   useEffect(() => {
     let config = {
       method: "get",
@@ -59,25 +78,6 @@ function Search() {
     document.title = `Bookly : ${q}`;
   }, [q]);
 
-  function search(books) {
-    // eslint-disable-next-line array-callback-return
-    return books.filter((book) => {
-      if (book.category.name === filterParam) {
-        return searchParam.some((newItem) => {
-          return (
-            book[newItem].toString().toLowerCase().indexOf(q.toLowerCase()) > -1
-          );
-        });
-      } else if (filterParam === "All") {
-        return searchParam.some((newItem) => {
-          return (
-            book[newItem].toString().toLowerCase().indexOf(q.toLowerCase()) > -1
-          );
-        });
-      }
-    });
-  }
-
   return (
     <div className="search">
       {!isLoaded ? (
@@ -106,18 +106,7 @@ function Search() {
 
           {search(books).map((book, i) => (
             <>
-              <SearchBook
-                key={i}
-                image={book.image}
-                title={book.title}
-                subtitle={book.subtitle}
-                edition={book.edition}
-                author={book.author}
-                publishDate={book.publishDate}
-                discountPrice={book.discountPrice}
-                price={book.price}
-                description={book.description}
-              />
+              <SearchBook key={i} book={book} />
               <hr />
             </>
           ))}

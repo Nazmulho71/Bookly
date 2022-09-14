@@ -1,0 +1,133 @@
+.profile {
+  margin: 40px 80px;
+  height: 80vh;
+  background-image: url("../images/ProfileBook.png");
+  /* background-size: contain; */
+  background-repeat: no-repeat;
+  background-position: right bottom;
+}
+
+.profile h1 {
+  font-weight: 700;
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+.profile h2 {
+  font-weight: 700;
+  font-size: 24px;
+  margin-bottom: 5px;
+}
+
+.profile h3 {
+  font-weight: 600;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.profile p,
+.profile input::placeholder {
+  font-weight: 500;
+  font-size: 18px;
+  color: #999999;
+}
+
+.profile__avatar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.profile__avatar > div {
+  display: flex;
+  align-items: center;
+}
+
+.profile__avatar > div .MuiAvatar-root {
+  width: 100px;
+  height: 100px;
+}
+
+.profile__avatar > div > div:last-child {
+  margin-left: 20px;
+}
+
+.profile__avatar > div > .MuiButtonBase-root {
+  font-family: "Quicksand";
+  font-weight: 700;
+  font-size: 18px;
+  text-transform: none;
+  padding: 12px 50px;
+  border-radius: 10px;
+  box-shadow: none;
+}
+
+.profile__avatar > div > .MuiButtonBase-root:first-child {
+  background: linear-gradient(107.56deg, #5669df 20.18%, #61cef7 100%);
+  margin-right: 20px;
+}
+
+.profile__avatar > div > .MuiButtonBase-root:last-child {
+  background: linear-gradient(107.56deg, #f2709b 24.95%, #ff9472 100%);
+}
+
+.profile__details {
+  width: 100%;
+  height: 70%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.profile__details input {
+  width: 600px;
+  padding: 15px 30px;
+  background: #eeeeee;
+  border: 1px solid #ffffff;
+  font-weight: 500;
+  font-size: 18px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  margin-bottom: 20px;
+}
+
+.profile__details input::placeholder {
+  font-weight: 500;
+  font-size: 18px;
+  color: #999999;
+}
+
+.profile__details > div > div {
+  width: 50%;
+  display: flex;
+  align-items: center;
+}
+
+.profile__details > div > div > input:first-child {
+  margin-right: 15px;
+}
+
+.profile__buttons > .MuiButtonBase-root {
+  font-family: "Quicksand";
+  font-weight: 700;
+  font-size: 18px;
+  text-transform: none;
+  padding: 12px 50px;
+  border-radius: 10px;
+  box-shadow: none;
+}
+
+.profile__buttons > .MuiButtonBase-root:first-child {
+  color: white;
+  background: #5669df;
+  margin-right: 20px;
+  border: 2px solid transparent;
+}
+
+.profile__buttons > .MuiButtonBase-root:last-child {
+  color: white;
+  color: #f2709b;
+  border: 2px solid #f2709b;
+}
