@@ -19,18 +19,22 @@ router.get("/:id", objectId, async (req, res) => {
   res.send(customer);
 });
 
-router.post("/", [auth, validate(validateCustomer)], async (req, res) => {
-  const customer = new Customer(
-    _.pick(req.body, ["name", "phone", "isRegular"])
-  );
-  await customer.save();
+router.post(
+  "/",
+  [auth, admin, validate(validateCustomer)],
+  async (req, res) => {
+    const customer = new Customer(
+      _.pick(req.body, ["name", "phone", "isRegular"])
+    );
+    await customer.save();
 
-  res.send(customer);
-});
+    res.send(customer);
+  }
+);
 
 router.put(
   "/:id",
-  [auth, objectId, validate(validateCustomer)],
+  [auth, admin, objectId, validate(validateCustomer)],
   async (req, res) => {
     const customer = await Customer.findByIdAndUpdate(
       req.params.id,

@@ -44,7 +44,7 @@
 
 .header__search input,
 .header__search-home input {
-  width: 700px;
+  width: 600px;
   height: 45px;
   font-family: "Quicksand";
   font-weight: 600;
@@ -60,9 +60,8 @@
   color: #999999;
 }
 
-.header__profile > .MuiAvatar-root {
+.header__profile .MuiAvatar-root {
   background: #f2709b;
-  cursor: pointer;
 }
 
 .header__button > .MuiButtonBase-root:first-child,

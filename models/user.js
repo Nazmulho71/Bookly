@@ -40,8 +40,8 @@ userSchema.methods.generateAuthToken = function () {
 const User = mongoose.model("User", userSchema);
 
 const complexityOptions = {
-  min: 10,
-  max: 30,
+  min: 5,
+  max: 20,
   lowerCase: 1,
   upperCase: 1,
   numeric: 1,

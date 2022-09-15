@@ -23,8 +23,9 @@ router.post(
     const id = req.params.id;
 
     const review = new Review({
-      user: req.user._id,
       comment: req.body.comment,
+      rating: req.body.rating,
+      user: req.user._id,
       book: id,
     });
 
@@ -45,24 +46,21 @@ router.put(
     if (!book) return res.status(404).send("Review not found.");
     const review = book.reviews.id(req.params.reviewId);
     review.comment = req.body.comment;
+    review.rating = req.body.rating;
     await book.save();
 
     res.send(review);
   }
 );
 
-router.delete(
-  "/:id/reviews/:reviewId",
-  [auth, admin, objectId],
-  async (req, res) => {
-    const book = await Book.findById(req.params.id);
-    if (!book) return res.status(404).send("Review not found.");
-    const review = book.reviews.id(req.params.reviewId);
-    review.remove();
-    await book.save();
+router.delete("/:id/reviews/:reviewId", [auth, objectId], async (req, res) => {
+  const book = await Book.findById(req.params.id);
+  if (!book) return res.status(404).send("Review not found.");
+  const review = book.reviews.id(req.params.reviewId);
+  review.remove();
+  await book.save();
 
-    res.send(review);
-  }
-);
+  res.send(review);
+});
 
 module.exports = router;

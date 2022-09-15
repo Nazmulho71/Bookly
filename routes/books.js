@@ -5,7 +5,6 @@ const objectId = require("../middleware/objectId");
 const validate = require("../middleware/validate");
 const { Book, validateBook } = require("../models/book");
 const { Category } = require("../models/category");
-const { Review } = require("../models/review");
 const express = require("express");
 const router = express.Router();
 
@@ -27,7 +26,7 @@ router.get("/:id", objectId, async (req, res) => {
   res.send(book);
 });
 
-router.post("/", [auth, validate(validateBook)], async (req, res) => {
+router.post("/", [auth, admin, validate(validateBook)], async (req, res) => {
   const category = await Category.findById(req.body.categoryId);
   if (!category) return res.status(400).send("Invalid category.");
 
@@ -60,7 +59,7 @@ router.post("/", [auth, validate(validateBook)], async (req, res) => {
 
 router.put(
   "/:id",
-  [auth, objectId, validate(validateBook)],
+  [auth, admin, objectId, validate(validateBook)],
   async (req, res) => {
     const category = await Category.findById(req.body.categoryId);
     if (!category) return res.status(400).send("Invalid category.");

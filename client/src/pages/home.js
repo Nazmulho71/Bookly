@@ -30,7 +30,7 @@ function Home() {
   }, [baseUrl]);
 
   useEffect(() => {
-    document.title = "Buy Book Online | Bookly";
+    document.title = "Buy Books Online | Bookly";
   }, []);
 
   return (

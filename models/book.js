@@ -94,6 +94,7 @@ const bookSchema = new mongoose.Schema({
     type: Float,
     min: 0,
     max: 5,
+    default: 0,
   },
   reviews: [reviewSchema],
 });

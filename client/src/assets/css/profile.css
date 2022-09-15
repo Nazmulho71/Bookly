@@ -119,6 +119,10 @@
   box-shadow: none;
 }
 
+.profile__buttons > .Mui-disabled {
+  background: #999 !important;
+}
+
 .profile__buttons > .MuiButtonBase-root:first-child {
   color: white;
   background: #5669df;

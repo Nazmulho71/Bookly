@@ -18,16 +18,20 @@ router.get("/:id", objectId, async (req, res) => {
   res.send(category);
 });
 
-router.post("/", [auth, validate(validateCategory)], async (req, res) => {
-  const category = new Category({ name: req.body.name });
-  await category.save();
+router.post(
+  "/",
+  [auth, admin, validate(validateCategory)],
+  async (req, res) => {
+    const category = new Category({ name: req.body.name });
+    await category.save();
 
-  res.send(category);
-});
+    res.send(category);
+  }
+);
 
 router.put(
   "/:id",
-  [auth, objectId, validate(validateCategory)],
+  [auth, admin, objectId, validate(validateCategory)],
   async (req, res) => {
     const category = await Category.findByIdAndUpdate(
       req.params.id,

@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const Float = require("mongoose-float").loadType(mongoose);
 const Joi = require("joi-oid");
 
 const reviewSchema = new mongoose.Schema({
@@ -7,6 +8,12 @@ const reviewSchema = new mongoose.Schema({
     minLength: 5,
     maxLength: 255,
     required: true,
+  },
+  rating: {
+    type: Float,
+    min: 0,
+    max: 5,
+    default: 0,
   },
   date: {
     type: Date,
@@ -30,6 +37,7 @@ const Review = mongoose.model("Review", reviewSchema);
 function validateReview(review) {
   const schema = Joi.object({
     comment: Joi.string().min(5).max(255).required(),
+    rating: Joi.number().min(0).max(5),
   });
 
   return schema.validate(review);
