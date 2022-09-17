@@ -5,6 +5,10 @@ const Joi = require("joi-oid");
 const passwordComplexity = require("joi-password-complexity");
 
 const userSchema = new mongoose.Schema({
+  profilePic: {
+    type: String,
+    default: "",
+  },
   name: {
     type: String,
     minLength: 5,
@@ -51,6 +55,7 @@ const complexityOptions = {
 
 function validateUser(user) {
   const schema = Joi.object({
+    profilePic: Joi.string(),
     name: Joi.string().min(5).max(50).required(),
     email: Joi.string().min(5).max(255).email().required(),
     password: passwordComplexity(complexityOptions),

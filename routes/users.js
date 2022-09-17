@@ -16,7 +16,9 @@ router.post("/", validate(validateUser), async (req, res) => {
   let user = await User.findOne({ email: req.body.email });
   if (user) return res.status(400).send("User already registered.");
 
-  user = new User(_.pick(req.body, ["name", "email", "password"]));
+  user = new User(
+    _.pick(req.body, ["profilePic", "name", "email", "password"])
+  );
   const salt = await bcrypt.genSalt(10);
   user.password = await bcrypt.hash(user.password, salt);
   await user.save();
@@ -24,7 +26,7 @@ router.post("/", validate(validateUser), async (req, res) => {
   const token = user.generateAuthToken();
   res
     .header("X-Auth-Token", token)
-    .send(_.pick(user, ["_id", "name", "email"]));
+    .send(_.pick(user, ["_id", "profilePic", "name", "email"]));
 });
 
 router.put(
@@ -36,6 +38,7 @@ router.put(
     const user = await User.findByIdAndUpdate(
       req.params.id,
       {
+        profilePic: req.body.profilePic,
         name: req.body.name,
         email: req.body.email,
         password: await bcrypt.hash(req.body.password, salt),
