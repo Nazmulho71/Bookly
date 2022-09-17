@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import moment from "moment";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import "../assets/css/BookDetails.css";
+import "../../assets/css/BookDetails.css";
 
 function BookDetails({
   image,

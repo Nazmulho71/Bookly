@@ -7,7 +7,7 @@ import Rating from "@mui/material/Rating";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import CreateReviewModal from "./CreateReviewModal";
 import UpdateReviewModal from "./UpdateReviewModal";
-import "../assets/css/BookReview.css";
+import "../../assets/css/BookReview.css";
 
 function BookReview({ baseUrl, id, reviews }) {
   const [comment, setComment] = useState("");

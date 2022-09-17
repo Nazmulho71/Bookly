@@ -12,15 +12,16 @@ import IconButton from "@mui/material/IconButton";
 import SearchIcon from "@mui/icons-material/Search";
 import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
-import Logo from "../assets/images/Logo.svg";
-import WhiteLogo from "../assets/images/WhiteLogo.svg";
-import "../assets/css/Header.css";
+import Logo from "../../assets/images/Logo.svg";
+import WhiteLogo from "../../assets/images/WhiteLogo.svg";
+import "../../assets/css/Header.css";
 
 function Header() {
   const location = useLocation();
   const [username, setUsername] = useState();
   const [q, setQ] = useState("");
   const [anchorEl, setAnchorEl] = useState(null);
+
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -31,8 +32,8 @@ function Header() {
 
   const cookies = new Cookies();
   const token = cookies.get("token");
-
   let baseUrl = "http://localhost:3000/api";
+  let profilePic = localStorage.getItem("profilePic");
   let firstLetter = username?.charAt(0);
   let home = location.pathname === "/";
 
@@ -98,7 +99,11 @@ function Header() {
             aria-haspopup="true"
             aria-expanded={open ? "true" : undefined}
           >
-            <Avatar>{firstLetter}</Avatar>
+            {profilePic ? (
+              <Avatar alt={firstLetter} src={profilePic} />
+            ) : (
+              <Avatar>{firstLetter}</Avatar>
+            )}
           </IconButton>
 
           <Menu
@@ -146,7 +151,12 @@ function Header() {
               </ListItemIcon>
               Settings
             </MenuItem>
-            <MenuItem onClick={() => cookies.remove("token")}>
+            <MenuItem
+              onClick={() => {
+                window.location.href = "/";
+                cookies.remove("token");
+              }}
+            >
               <ListItemIcon>
                 <Logout fontSize="small" />
               </ListItemIcon>

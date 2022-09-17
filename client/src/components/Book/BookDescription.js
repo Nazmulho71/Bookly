@@ -1,7 +1,7 @@
 import React from "react";
 import Rating from "@mui/material/Rating";
-import ShortDescription from "./ShortDescription";
-import "../assets/css/BookDescription.css";
+import ShortDescription from "../Common/ShortDescription";
+import "../../assets/css/BookDescription.css";
 
 function BookDescription({ rating, description }) {
   return (
@@ -13,6 +13,7 @@ function BookDescription({ rating, description }) {
           <Rating defaultValue={rating} precision={0.1} readOnly size="large" />
         </div>
       </div>
+
       <hr />
       <ShortDescription content={description} limit={700} />
     </div>

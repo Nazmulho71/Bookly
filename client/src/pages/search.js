@@ -5,7 +5,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import SearchBook from "../components/SearchBook";
+import SearchBook from "../components/Search/SearchBook";
 import "../assets/css/search.css";
 
 function Search() {

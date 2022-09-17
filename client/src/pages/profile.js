@@ -1,12 +1,19 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Cookies from "universal-cookie";
+import jwt_decode from "jwt-decode";
 import CircularProgress from "@mui/material/CircularProgress";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
+import UpdateAvatarModal from "../components/Profile/UpdateAvatarModal";
+import DeleteAvatarModal from "../components/Profile/DeleteAvatarModal";
 import "../assets/css/profile.css";
 
 function Profile() {
+  const [updateModalOpen, setUpdateModalOpen] = useState(false);
+  const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+  const [profilePic, setProfilePic] = useState("");
+  const [profile, setProfile] = useState("");
   const [profileName, setProfileName] = useState("");
   const [isLoaded, setIsLoaded] = useState(false);
   const [name, setName] = useState("");
@@ -14,34 +21,16 @@ function Profile() {
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [selectedImage, setSelectedImage] = useState();
 
   const cookies = new Cookies();
   const token = cookies.get("token");
+  const decoded = jwt_decode(token);
   let baseUrl = "http://localhost:3000/api";
-
-  const imageUpload = async (event) => {
-    event.preventDefault();
-    const formData = new FormData();
-    formData.append("selectedImage", selectedImage);
-    try {
-      const response = await axios({
-        method: "post",
-        url: "/api/upload/file",
-        data: formData,
-        headers: { "Content-Type": "multipart/form-data" },
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const imageSelect = (event) => {
-    setSelectedImage(event.target.files[0]);
-  };
+  let firstLetter = profileName?.charAt(0);
 
   const updateUser = () => {
     let data = JSON.stringify({
+      profilePic: deleteModalOpen ? profileName : profilePic,
       name,
       email,
       password: newPassword ? newPassword : currentPassword,
@@ -49,7 +38,7 @@ function Profile() {
 
     let config = {
       method: "put",
-      url: `${baseUrl}/users/6319d82810f03bab358ded74`,
+      url: `${baseUrl}/users/${decoded._id}`,
       headers: {
         "X-Auth-Token": token,
         "Content-Type": "application/json",
@@ -76,8 +65,10 @@ function Profile() {
     axios(config)
       .then(function (res) {
         setIsLoaded(true);
+        setProfile(res.data.profilePic);
         setProfileName(res.data.name);
         setEmail(res.data.email);
+        localStorage.setItem("profilePic", res.data.profilePic);
       })
       .catch(function (err) {
         setIsLoaded(true);
@@ -86,14 +77,13 @@ function Profile() {
   }, [baseUrl, token]);
 
   useEffect(() => {
+    setProfilePic(profile);
     setName(profileName);
-  }, [profileName]);
+  }, [profile, profileName]);
 
   useEffect(() => {
     document.title = "My Profile";
   }, []);
-
-  console.log(selectedImage);
 
   return (
     <div className="profile">
@@ -108,10 +98,17 @@ function Profile() {
 
           <div className="profile__avatar">
             <div>
-              <Avatar
-                alt={profileName}
-                // src={selectedImage && URL.createObjectURL(selectedImage)}
-              />
+              {profile ? (
+                <Avatar
+                  alt={firstLetter}
+                  src={profile}
+                  onError={() => setProfile("")}
+                />
+              ) : (
+                <Avatar sx={{ background: "#f2709b", fontSize: 40 }}>
+                  {firstLetter}
+                </Avatar>
+              )}
               <div>
                 <h2>{profileName}</h2>
                 <p>Update your photo and personal details.</p>
@@ -119,21 +116,36 @@ function Profile() {
             </div>
 
             <div>
-              <Button variant="contained">Change Avatar</Button>
-              <Button variant="contained">Remove Avatar</Button>
+              <Button
+                variant="contained"
+                onClick={() => setUpdateModalOpen(true)}
+              >
+                Change Avatar
+              </Button>
+              <Button
+                variant="contained"
+                onClick={() => setDeleteModalOpen(true)}
+              >
+                Remove Avatar
+              </Button>
             </div>
-            {/* <input
-              type="file"
-              name="myImage"
-              onChange={(event) => {
-                console.log(event.target.files[0]);
-                setSelectedImage(event.target.files[0]);
-              }}
-            /> */}
-            <form onSubmit={imageUpload}>
-              <input type="file" onChange={imageSelect} />
-              <input type="submit" value="Upload File" />
-            </form>
+
+            {updateModalOpen && (
+              <UpdateAvatarModal
+                updateModalOpen={updateModalOpen}
+                setUpdateModalOpen={setUpdateModalOpen}
+                setProfilePic={setProfilePic}
+                updateUser={updateUser}
+              />
+            )}
+
+            {deleteModalOpen && (
+              <DeleteAvatarModal
+                deleteModalOpen={deleteModalOpen}
+                setDeleteModalOpen={setDeleteModalOpen}
+                updateUser={updateUser}
+              />
+            )}
           </div>
 
           <div className="profile__details">
@@ -195,7 +207,12 @@ function Profile() {
             >
               Save
             </Button>
-            <Button variant="outlined">Cancel</Button>
+            <Button
+              variant="outlined"
+              onClick={() => (window.location.href = "/")}
+            >
+              Cancel
+            </Button>
           </div>
         </>
       )}

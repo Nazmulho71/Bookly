@@ -2,7 +2,7 @@ import React from "react";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import Rating from "@mui/material/Rating";
-import "../assets/css/HomeBook.css";
+import "../../assets/css/HomeBook.css";
 
 function Book({ books }) {
   const navigateBook = (book) => {

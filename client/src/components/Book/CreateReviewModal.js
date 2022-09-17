@@ -5,7 +5,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import Rating from "@mui/material/Rating";
-import "../assets/css/ReviewModal.css";
+import "../../assets/css/ReviewModal.css";
 
 function ReviewModal({
   open,

@@ -1,8 +1,8 @@
 import React from "react";
 import moment from "moment";
 import Rating from "@mui/material/Rating";
-import ShortDescription from "./ShortDescription";
-import "../assets/css/SearchBook.css";
+import ShortDescription from "../Common/ShortDescription";
+import "../../assets/css/SearchBook.css";
 
 function SearchBook({ book }) {
   const navigateBook = () => {

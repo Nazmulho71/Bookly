@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import CircularProgress from "@mui/material/CircularProgress";
-import HomeBook from "../components/HomeBook";
+import HomeBook from "../components/Home/HomeBook";
 import Hero from "../assets/images/Hero.png";
 import "../assets/css/home.css";
 

@@ -3,9 +3,9 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import CircularProgress from "@mui/material/CircularProgress";
 import Button from "@mui/material/Button";
-import BookDetails from "../components/BookDetails";
-import BookDescription from "../components/BookDescription";
-import BookReview from "../components/BookReview";
+import BookDetails from "../components/Book/BookDetails";
+import BookDescription from "../components/Book/BookDescription";
+import BookReview from "../components/Book/BookReview";
 import "../assets/css/book.css";
 
 function Book() {
