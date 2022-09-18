@@ -38,6 +38,8 @@ function validateReview(review) {
   const schema = Joi.object({
     comment: Joi.string().min(5).max(255).required(),
     rating: Joi.number().min(0).max(5),
+    userId: Joi.objectId(),
+    bookId: Joi.objectId(),
   });
 
   return schema.validate(review);

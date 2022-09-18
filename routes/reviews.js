@@ -3,7 +3,6 @@ const router = express.Router();
 const objectId = require("../middleware/objectId");
 const auth = require("../middleware/auth");
 const validate = require("../middleware/validate");
-const admin = require("../middleware/admin");
 const { Review, validateReview } = require("../models/review");
 const { Book } = require("../models/book");
 

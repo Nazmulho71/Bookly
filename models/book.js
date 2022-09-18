@@ -81,12 +81,6 @@ const bookSchema = new mongoose.Schema({
     min: 10,
     max: 255,
   },
-  dailyRentalRate: {
-    type: Number,
-    min: 0,
-    max: 255,
-    required: true,
-  },
   freeShipping: {
     type: Boolean,
   },
@@ -116,7 +110,6 @@ function validateBook(book) {
     publisher: Joi.string().min(5).max(255).required(),
     numberInStock: Joi.number().min(0).required(),
     discountPrice: Joi.number(),
-    dailyRentalRate: Joi.number().min(0).required(),
     rating: Joi.number().min(0).max(5),
   });
 

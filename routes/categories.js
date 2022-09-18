@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 const objectId = require("../middleware/objectId");
 const auth = require("../middleware/auth");
-const admin = require("../middleware/admin");
 const validate = require("../middleware/validate");
 const { Category, validateCategory } = require("../models/category");
 
@@ -18,20 +17,16 @@ router.get("/:id", objectId, async (req, res) => {
   res.send(category);
 });
 
-router.post(
-  "/",
-  [auth, admin, validate(validateCategory)],
-  async (req, res) => {
-    const category = new Category({ name: req.body.name });
-    await category.save();
+router.post("/", [auth, validate(validateCategory)], async (req, res) => {
+  const category = new Category({ name: req.body.name });
+  await category.save();
 
-    res.send(category);
-  }
-);
+  res.send(category);
+});
 
 router.put(
   "/:id",
-  [auth, admin, objectId, validate(validateCategory)],
+  [auth, objectId, validate(validateCategory)],
   async (req, res) => {
     const category = await Category.findByIdAndUpdate(
       req.params.id,
@@ -44,7 +39,7 @@ router.put(
   }
 );
 
-router.delete("/:id", [auth, admin, objectId], async (req, res) => {
+router.delete("/:id", [auth, objectId], async (req, res) => {
   const category = await Category.findByIdAndRemove(req.params.id);
   if (!category) return res.status(404).send("Category not found.");
 

@@ -1,6 +1,5 @@
 const _ = require("lodash");
 const auth = require("../middleware/auth");
-const admin = require("../middleware/admin");
 const objectId = require("../middleware/objectId");
 const validate = require("../middleware/validate");
 const { Book, validateBook } = require("../models/book");
@@ -26,7 +25,7 @@ router.get("/:id", objectId, async (req, res) => {
   res.send(book);
 });
 
-router.post("/", [auth, admin, validate(validateBook)], async (req, res) => {
+router.post("/", [auth, validate(validateBook)], async (req, res) => {
   const category = await Category.findById(req.body.categoryId);
   if (!category) return res.status(400).send("Invalid category.");
 
@@ -48,7 +47,6 @@ router.post("/", [auth, admin, validate(validateBook)], async (req, res) => {
     publishDate: req.body.publishDate,
     numberInStock: req.body.numberInStock,
     discountPrice: req.body.discountPrice,
-    dailyRentalRate: req.body.dailyRentalRate,
     freeShipping: req.body.numberInStock >= 50,
     rating: req.body.rating,
   });
@@ -59,7 +57,7 @@ router.post("/", [auth, admin, validate(validateBook)], async (req, res) => {
 
 router.put(
   "/:id",
-  [auth, admin, objectId, validate(validateBook)],
+  [auth, objectId, validate(validateBook)],
   async (req, res) => {
     const category = await Category.findById(req.body.categoryId);
     if (!category) return res.status(400).send("Invalid category.");
@@ -84,7 +82,6 @@ router.put(
         publishDate: req.body.publishDate,
         numberInStock: req.body.numberInStock,
         discountPrice: req.body.discountPrice,
-        dailyRentalRate: req.body.dailyRentalRate,
         rating: req.body.rating,
       },
       { new: true }
@@ -95,7 +92,7 @@ router.put(
   }
 );
 
-router.delete("/:id", [auth, admin, objectId], async (req, res) => {
+router.delete("/:id", [auth, objectId], async (req, res) => {
   const book = await Book.findByIdAndRemove(req.params.id);
   if (!book) return res.status(404).send("Book not found.");
 

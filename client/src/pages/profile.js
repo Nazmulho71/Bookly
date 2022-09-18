@@ -12,7 +12,7 @@ import "../assets/css/profile.css";
 function Profile() {
   const [updateModalOpen, setUpdateModalOpen] = useState(false);
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
-  const [profilePic, setProfilePic] = useState("");
+  const [photo, setPhoto] = useState("");
   const [profile, setProfile] = useState("");
   const [profileName, setProfileName] = useState("");
   const [isLoaded, setIsLoaded] = useState(false);
@@ -30,7 +30,7 @@ function Profile() {
 
   const updateUser = () => {
     let data = JSON.stringify({
-      profilePic: deleteModalOpen ? profileName : profilePic,
+      photo: deleteModalOpen ? profileName : photo,
       name,
       email,
       password: newPassword ? newPassword : currentPassword,
@@ -65,10 +65,10 @@ function Profile() {
     axios(config)
       .then(function (res) {
         setIsLoaded(true);
-        setProfile(res.data.profilePic);
+        setProfile(res.data.photo);
         setProfileName(res.data.name);
         setEmail(res.data.email);
-        localStorage.setItem("profilePic", res.data.profilePic);
+        localStorage.setItem("photo", res.data.photo);
       })
       .catch(function (err) {
         setIsLoaded(true);
@@ -77,7 +77,7 @@ function Profile() {
   }, [baseUrl, token]);
 
   useEffect(() => {
-    setProfilePic(profile);
+    setPhoto(profile);
     setName(profileName);
   }, [profile, profileName]);
 
@@ -134,7 +134,7 @@ function Profile() {
               <UpdateAvatarModal
                 updateModalOpen={updateModalOpen}
                 setUpdateModalOpen={setUpdateModalOpen}
-                setProfilePic={setProfilePic}
+                setProfilePic={setPhoto}
                 updateUser={updateUser}
               />
             )}

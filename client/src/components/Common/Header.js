@@ -33,7 +33,7 @@ function Header() {
   const cookies = new Cookies();
   const token = cookies.get("token");
   let baseUrl = "http://localhost:3000/api";
-  let profilePic = localStorage.getItem("profilePic");
+  let photo = localStorage.getItem("photo");
   let firstLetter = username?.charAt(0);
   let home = location.pathname === "/";
 
@@ -99,8 +99,8 @@ function Header() {
             aria-haspopup="true"
             aria-expanded={open ? "true" : undefined}
           >
-            {profilePic ? (
-              <Avatar alt={firstLetter} src={profilePic} />
+            {photo ? (
+              <Avatar alt={firstLetter} src={photo} />
             ) : (
               <Avatar>{firstLetter}</Avatar>
             )}

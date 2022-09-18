@@ -5,7 +5,7 @@ const Joi = require("joi-oid");
 const passwordComplexity = require("joi-password-complexity");
 
 const userSchema = new mongoose.Schema({
-  profilePic: {
+  photo: {
     type: String,
     default: "",
   },
@@ -28,17 +28,10 @@ const userSchema = new mongoose.Schema({
     maxLength: 1024,
     required: true,
   },
-  admin: {
-    type: Boolean,
-    default: false,
-  },
 });
 
 userSchema.methods.generateAuthToken = function () {
-  return jwt.sign(
-    { _id: this._id, admin: this.admin },
-    config.get("jwtSignatureKey")
-  );
+  return jwt.sign({ _id: this._id }, config.get("jwtSignatureKey"));
 };
 
 const User = mongoose.model("User", userSchema);
@@ -55,7 +48,7 @@ const complexityOptions = {
 
 function validateUser(user) {
   const schema = Joi.object({
-    profilePic: Joi.string(),
+    photo: Joi.string(),
     name: Joi.string().min(5).max(50).required(),
     email: Joi.string().min(5).max(255).email().required(),
     password: passwordComplexity(complexityOptions),
