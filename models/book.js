@@ -76,6 +76,11 @@ const bookSchema = new mongoose.Schema({
     max: 255,
     required: true,
   },
+  addToCart: {
+    type: Boolean,
+    default: false,
+    required: true,
+  },
   discountPrice: {
     type: Float,
     min: 10,
@@ -110,6 +115,7 @@ function validateBook(book) {
     publisher: Joi.string().min(5).max(255).required(),
     numberInStock: Joi.number().min(0).required(),
     discountPrice: Joi.number(),
+    addToCart: Joi.boolean(),
     rating: Joi.number().min(0).max(5),
   });
 
