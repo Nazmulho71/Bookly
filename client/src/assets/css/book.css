@@ -17,8 +17,13 @@
   margin-top: -60px;
   background: linear-gradient(107.56deg, #f2709b 24.95%, #ff9472 100%);
   border-radius: 10px;
+  color: #fff;
   font-weight: 700;
   font-size: 20px;
-  color: #fff;
+  text-transform: none;
   box-shadow: none !important;
+}
+
+.book > .MuiButtonBase-root .MuiSvgIcon-root {
+  margin-right: 10px;
 }

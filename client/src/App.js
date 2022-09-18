@@ -7,6 +7,7 @@ import Register from "./pages/register";
 import Profile from "./pages/profile";
 import Search from "./pages/search";
 import Book from "./pages/book";
+import Cart from "./pages/cart";
 import "./assets/css/App.css";
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/search" element={<Search />} />
         <Route path="/books/:id" element={<Book />} />
+        <Route path="/cart" element={<Cart />} />
       </Routes>
     </div>
   );

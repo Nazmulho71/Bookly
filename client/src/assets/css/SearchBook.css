@@ -13,7 +13,6 @@
 
 .searchBook__details > div {
   display: flex;
-  align-items: center;
 }
 
 .searchBook__details > div:first-child {

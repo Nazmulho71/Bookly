@@ -20,7 +20,6 @@ function Search() {
   let baseUrl = "http://localhost:3000/api";
 
   const search = (books) => {
-    // eslint-disable-next-line array-callback-return
     return books.filter((book) => {
       if (book.category.name === filterParam) {
         return searchParam.some((newItem) => {
@@ -35,6 +34,7 @@ function Search() {
           );
         });
       }
+      return null;
     });
   };
 
