@@ -1,7 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 import moment from "moment";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import "../../assets/css/BookDetails.css";
 
 function BookDetails({
@@ -18,8 +16,6 @@ function BookDetails({
   price,
   page,
 }) {
-  const [isFavorite, setIsFavorite] = useState();
-
   return (
     <div className="bookDetails">
       <img src={image} alt="" width={280} height={340} />
@@ -31,12 +27,6 @@ function BookDetails({
             {subtitle && <h3>:&nbsp;{subtitle}</h3>}
             <p style={{ marginLeft: 5 }}>{edition}</p>
           </div>
-
-          {isFavorite ? (
-            <FavoriteIcon onClick={() => setIsFavorite(false)} />
-          ) : (
-            <FavoriteBorderIcon onClick={() => setIsFavorite(true)} />
-          )}
         </div>
 
         <hr />

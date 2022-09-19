@@ -14,8 +14,8 @@ function SearchBook({ book }) {
       <img src={book.image} alt="" onClick={() => navigateBook(book)} />
 
       <div className="searchBook__details">
-        <div>
-          <h3 onClick={() => navigateBook(book)}>{book.title}</h3>
+        <div onClick={() => navigateBook(book)}>
+          <h3>{book.title}</h3>
           {book.subtitle && <h3>:&nbsp;{book.subtitle}</h3>}
           <p>{book.edition}</p>
         </div>
