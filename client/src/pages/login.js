@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Button from "@mui/material/Button";
 import Checkbox from "@mui/material/Checkbox";
@@ -11,15 +11,13 @@ function Login() {
   const [password, setPassword] = useState("");
   const [err, setErr] = useState("");
 
-  let baseUrl = "http://localhost:3000/api";
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
     let data = JSON.stringify({ email, password });
     let config = {
       method: "post",
-      url: `${baseUrl}/auth`,
+      url: "/api/auth",
       headers: { "Content-Type": "application/json" },
       data: data,
     };
@@ -34,6 +32,10 @@ function Login() {
         setErr(err.response.data);
       });
   };
+
+  useEffect(() => {
+    document.title = "Login | Bookly";
+  }, []);
 
   return (
     <div className="login">

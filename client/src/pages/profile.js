@@ -25,7 +25,6 @@ function Profile() {
   const cookies = new Cookies();
   const token = cookies.get("token");
   const decoded = jwt_decode(token);
-  let baseUrl = "http://localhost:3000/api";
   let firstLetter = profileName?.charAt(0);
 
   const updateUser = () => {
@@ -38,7 +37,7 @@ function Profile() {
 
     let config = {
       method: "put",
-      url: `${baseUrl}/users/${decoded._id}`,
+      url: `/api/users/${decoded._id}`,
       headers: {
         "X-Auth-Token": token,
         "Content-Type": "application/json",
@@ -58,7 +57,7 @@ function Profile() {
   useEffect(() => {
     let config = {
       method: "get",
-      url: `${baseUrl}/users`,
+      url: "/api/users",
       headers: { "X-Auth-Token": token },
     };
 
@@ -74,7 +73,7 @@ function Profile() {
         setIsLoaded(true);
         console.log(err);
       });
-  }, [baseUrl, token]);
+  }, [token]);
 
   useEffect(() => {
     setPhoto(profile);

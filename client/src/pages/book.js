@@ -14,12 +14,10 @@ function Book() {
   const [book, setBook] = useState({});
   const [isLoaded, setIsLoaded] = useState(false);
 
-  let baseUrl = "http://localhost:3000/api";
-
   useEffect(() => {
     let config = {
       method: "get",
-      url: `${baseUrl}/books/${id}`,
+      url: `/api/books/${id}`,
       headers: {},
     };
 
@@ -32,7 +30,7 @@ function Book() {
         setIsLoaded(true);
         console.log(err);
       });
-  }, [baseUrl, id]);
+  }, [id]);
 
   useEffect(() => {
     document.title = `${book.title}${
@@ -79,7 +77,7 @@ function Book() {
             description={book.description}
           />
 
-          <BookReview baseUrl={baseUrl} id={id} reviews={book.reviews} />
+          <BookReview id={id} reviews={book.reviews} />
         </>
       )}
     </div>

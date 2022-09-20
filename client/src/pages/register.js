@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Button from "@mui/material/Button";
 import Logo from "../assets/images/Logo.svg";
@@ -11,15 +11,13 @@ function Register() {
   const [password, setPassword] = useState("");
   const [err, setErr] = useState("");
 
-  let baseUrl = "http://localhost:3000/api";
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
     let data = JSON.stringify({ name, email, password });
     let config = {
       method: "post",
-      url: `${baseUrl}/users`,
+      url: "/api/users",
       headers: { "Content-Type": "application/json" },
       data: data,
     };
@@ -34,17 +32,11 @@ function Register() {
       });
   };
 
+  useEffect(() => {
+    document.title = "Register | Bookly";
+  }, []);
+
   return (
-    // <div className="register">
-    //   <form onSubmit={handleSubmit}>
-    //
-
-    //     <button type="submit">Register</button>
-
-    //     <p>{err}</p>
-    //   </form>
-    // </div>
-
     <div className="login">
       <div className="login__form">
         <div>

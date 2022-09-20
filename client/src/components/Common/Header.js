@@ -32,7 +32,6 @@ function Header() {
 
   const cookies = new Cookies();
   const token = cookies.get("token");
-  let baseUrl = "http://localhost:3000/api";
   let photo = localStorage.getItem("photo");
   let firstLetter = username?.charAt(0);
   let home = location.pathname === "/";
@@ -53,7 +52,7 @@ function Header() {
   useEffect(() => {
     let config = {
       method: "get",
-      url: `${baseUrl}/users`,
+      url: `/api/users`,
       headers: { "X-Auth-Token": token },
     };
 
@@ -64,7 +63,7 @@ function Header() {
       .catch(function (err) {
         console.log(err);
       });
-  }, [baseUrl, token]);
+  }, [token]);
 
   return (
     <div className="header" style={{ background: home && "#fff" }}>

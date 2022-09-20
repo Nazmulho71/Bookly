@@ -17,7 +17,6 @@ function Search() {
   const [searchParam] = useState(["title", "author"]);
 
   const q = searchParams.get("q");
-  let baseUrl = "http://localhost:3000/api";
 
   const search = (books) => {
     return books.filter((book) => {
@@ -41,7 +40,7 @@ function Search() {
   useEffect(() => {
     let config = {
       method: "get",
-      url: `${baseUrl}/books`,
+      url: "/api/books",
       headers: {},
     };
 
@@ -54,12 +53,12 @@ function Search() {
         setIsLoaded(true);
         console.log(err);
       });
-  }, [baseUrl]);
+  }, []);
 
   useEffect(() => {
     let config = {
       method: "get",
-      url: `${baseUrl}/categories`,
+      url: "/api/categories",
       headers: {},
     };
 
@@ -72,7 +71,7 @@ function Search() {
         setIsLoaded(true);
         console.log(err);
       });
-  }, [baseUrl]);
+  }, []);
 
   useEffect(() => {
     document.title = `Bookly : ${q}`;

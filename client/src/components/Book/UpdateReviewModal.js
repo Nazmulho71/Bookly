@@ -6,7 +6,7 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import EditIcon from "@mui/icons-material/Edit";
 
-function EditCommentModal({ baseUrl, token, review, comment, setComment }) {
+function EditCommentModal({ token, review, comment, setComment }) {
   const [commentModalOpen, setCommentModalOpen] = useState(false);
 
   const style = {
@@ -25,7 +25,7 @@ function EditCommentModal({ baseUrl, token, review, comment, setComment }) {
     let data = JSON.stringify({ comment, rating: review.rating });
     let config = {
       method: "put",
-      url: `${baseUrl}/books/${review.book}/reviews/${review._id}`,
+      url: `/api/books/${review.book}/reviews/${review._id}`,
       headers: { "X-Auth-Token": token, "Content-Type": "application/json" },
       data: data,
     };
@@ -42,7 +42,7 @@ function EditCommentModal({ baseUrl, token, review, comment, setComment }) {
   const deleteReview = () => {
     let config = {
       method: "delete",
-      url: `${baseUrl}/books/${review.book}/reviews/${review._id}`,
+      url: `/api/books/${review.book}/reviews/${review._id}`,
       headers: { "X-Auth-Token": token },
     };
 

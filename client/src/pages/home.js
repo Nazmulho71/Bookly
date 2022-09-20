@@ -9,12 +9,10 @@ function Home() {
   const [books, setBooks] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
 
-  let baseUrl = "http://localhost:3000/api";
-
   useEffect(() => {
     let config = {
       method: "get",
-      url: `${baseUrl}/books`,
+      url: "/api/books",
       headers: {},
     };
 
@@ -27,7 +25,7 @@ function Home() {
         setIsLoaded(true);
         console.log(err);
       });
-  }, [baseUrl]);
+  }, []);
 
   useEffect(() => {
     document.title = "Buy Books Online | Bookly";

@@ -10,7 +10,6 @@ import "../../assets/css/ReviewModal.css";
 function ReviewModal({
   open,
   handleClose,
-  baseUrl,
   token,
   id,
   comment,
@@ -34,7 +33,7 @@ function ReviewModal({
     let data = JSON.stringify({ comment, rating });
     let config = {
       method: "post",
-      url: `${baseUrl}/books/${id}/reviews`,
+      url: `/api/books/${id}/reviews`,
       headers: {
         "X-Auth-Token": token,
         "Content-Type": "application/json",

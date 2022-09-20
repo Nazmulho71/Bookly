@@ -9,7 +9,7 @@ import CreateReviewModal from "./CreateReviewModal";
 import UpdateReviewModal from "./UpdateReviewModal";
 import "../../assets/css/BookReview.css";
 
-function BookReview({ baseUrl, id, reviews }) {
+function BookReview({ id, reviews }) {
   const [comment, setComment] = useState("");
   const [rating, setRating] = useState(0);
   const [reviewModal, setReviewModal] = useState(false);
@@ -34,7 +34,6 @@ function BookReview({ baseUrl, id, reviews }) {
         <CreateReviewModal
           open={reviewModal}
           handleClose={() => setReviewModal(false)}
-          baseUrl={baseUrl}
           token={token}
           id={id}
           comment={comment}
@@ -73,7 +72,6 @@ function BookReview({ baseUrl, id, reviews }) {
               </div>
               {review.user._id === decoded._id && (
                 <UpdateReviewModal
-                  baseUrl={baseUrl}
                   token={token}
                   review={review}
                   comment={comment}
